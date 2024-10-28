@@ -13,26 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wallet.R;
+import com.example.wallet.databinding.FragmentTipsBinding;
 
 public class TipsFragment extends Fragment {
 
-    private TipsViewModel mViewModel;
-
-    public static TipsFragment newInstance() {
-        return new TipsFragment();
-    }
-
+    FragmentTipsBinding binding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tips, container, false);
+        TipsViewModel tipsViewModel = new ViewModelProvider(this).get(TipsViewModel.class);
+        binding = FragmentTipsBinding.inflate(inflater, container, false);
+
+
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TipsViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }

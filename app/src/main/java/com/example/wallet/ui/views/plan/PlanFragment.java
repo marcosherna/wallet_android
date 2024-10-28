@@ -13,26 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wallet.R;
+import com.example.wallet.databinding.FragmentPlanBinding;
 
 public class PlanFragment extends Fragment {
 
-    private PlanViewModel mViewModel;
-
-    public static PlanFragment newInstance() {
-        return new PlanFragment();
-    }
-
+    FragmentPlanBinding binding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_plan, container, false);
+
+        PlanViewModel planViewModel = new ViewModelProvider(this).get(PlanViewModel.class);
+        binding = FragmentPlanBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(PlanViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
+
 
 }

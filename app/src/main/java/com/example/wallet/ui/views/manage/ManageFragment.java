@@ -13,26 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wallet.R;
+import com.example.wallet.databinding.FragmentManageBinding;
 
 public class ManageFragment extends Fragment {
 
-    private ManageViewModel mViewModel;
-
-    public static ManageFragment newInstance() {
-        return new ManageFragment();
-    }
+    FragmentManageBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_manage, container, false);
+
+        ManageViewModel manageViewModel = new ViewModelProvider(this).get(ManageViewModel.class);
+        binding = FragmentManageBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ManageViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
+
 
 }
