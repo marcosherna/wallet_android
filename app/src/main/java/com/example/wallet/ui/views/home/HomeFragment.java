@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,10 +16,8 @@ import com.example.wallet.ui.views.home.tabs.plan.TabPlanFragment;
 import com.example.wallet.ui.views.home.tabs.revenue.TabRevenueFragment;
 import com.example.wallet.utils.TabHelper;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 

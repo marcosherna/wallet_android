@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentTabPlanBinding;
 
 public class TabPlanFragment extends Fragment {
