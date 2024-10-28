@@ -14,7 +14,7 @@ import com.example.wallet.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
 
     NavController navController;
 

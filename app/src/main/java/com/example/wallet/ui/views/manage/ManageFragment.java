@@ -1,6 +1,5 @@
 package com.example.wallet.ui.views.manage;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -44,17 +43,10 @@ public class ManageFragment extends Fragment {
     }
 
     private View.OnClickListener NavigateToAddCountMovementFragment(String title, int typeMovement){
-
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
         bundle.putInt("typeMovement", typeMovement);
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.navigation_manage_to_navigation_add_account, bundle);
-            }
-
-        };
+        return view -> navController.navigate(R.id.navigation_manage_to_navigation_add_account, bundle);
     }
 
     @Override

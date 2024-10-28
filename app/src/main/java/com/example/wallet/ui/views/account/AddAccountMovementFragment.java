@@ -1,6 +1,5 @@
 package com.example.wallet.ui.views.account;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,8 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentAddAccountMovementBinding;
+
+import java.util.Objects;
 
 public class AddAccountMovementFragment extends Fragment {
 
@@ -28,7 +28,7 @@ public class AddAccountMovementFragment extends Fragment {
         if (getArguments() != null){
             int type = getArguments().getInt("typeMovement");
             String title = getArguments().getString("title");
-            ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(title);
+            Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(title);
         }
     }
 
