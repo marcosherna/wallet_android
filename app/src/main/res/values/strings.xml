@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="txt_expense">Egresos</string>
+    <string name="txt_revenue">Ingresos</string>
+    <string name="txt_tip">Consejos</string>
+    <string name="txt_manage">Gestion</string>
+    <string name="txt_plan">Planes</string>
 </resources>
