@@ -14,6 +14,7 @@ public class AccountMovement extends Entity {
     private Date date;
     private Type type;
     private String idPlan;
+    private Plan plan;
 
     public AccountMovement(Type type, String idPlan, Float amount){
         this.type = type;
@@ -40,6 +41,11 @@ public class AccountMovement extends Entity {
     public String getIdPlan() { return  this.idPlan; }
     public void setIdPlan(String idPlan){
         this.idPlan = idPlan;
+    }
+
+    public Plan getPlan() { return  this.plan; }
+    public void setPlan(Plan plan){
+        this.plan = plan;
     }
 
 
