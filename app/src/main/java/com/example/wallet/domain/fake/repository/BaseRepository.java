@@ -32,7 +32,7 @@ public abstract class BaseRepository<TEntity extends Entity> {
                 .findFirst();
 
         if (optionalEntity.isPresent()) {
-            Entity _entity = optionalEntity.get();
+            //Entity _entity = optionalEntity.get();
             result = true;
         }
         return result;
