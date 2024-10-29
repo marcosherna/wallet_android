@@ -30,6 +30,9 @@ public class AccountMovementRepository extends BaseRepository<AccountMovement> {
 
     @Override
     public ArrayList<AccountMovement> getAll() {
+
+        ArrayList<AccountMovement> accountMovements = super.filterByClass(AccountMovement.class);
+
         return super.filterByClass(AccountMovement.class).stream()
                 .peek(acm -> {
                     super.filterByClass(Plan.class).stream()
@@ -40,6 +43,20 @@ public class AccountMovementRepository extends BaseRepository<AccountMovement> {
                                 acm.setPlan(p);
                             });
 
+                }).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<AccountMovement> getAllByType(AccountMovement.Type typeMovement){
+        return super.filterByClass(AccountMovement.class).stream()
+                .filter(acm -> acm.getTypeMovements().equals(typeMovement))
+                .peek( acm -> {
+                    super.filterByClass(Plan.class).stream()
+                            .filter( p -> p.getId().equals(acm.getIdPlan()))
+                            .findFirst()
+                            .ifPresent( p -> {
+                                acm.setIdPlan(p.getId());
+                                acm.setPlan(p);
+                            });
                 }).collect(Collectors.toCollection(ArrayList::new));
     }
 }

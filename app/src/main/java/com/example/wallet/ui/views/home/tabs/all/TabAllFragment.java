@@ -13,6 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wallet.databinding.FragmentTabAllBinding;
+import com.example.wallet.domain.fake.repository.AccountMovementRepository;
+import com.example.wallet.domain.models.AccountMovement;
+import com.example.wallet.ui.adapters.RVAccountMovementAdapter;
+
+import java.util.ArrayList;
 
 public class TabAllFragment extends Fragment {
 
@@ -23,6 +28,13 @@ public class TabAllFragment extends Fragment {
 
         TabAllViewModel tabAllViewModel = new ViewModelProvider(this).get(TabAllViewModel.class);
         binding = FragmentTabAllBinding.inflate(inflater, container, false);
+
+        AccountMovementRepository repository = new AccountMovementRepository();
+
+        ArrayList<AccountMovement> lst = repository.getAll();
+
+        RVAccountMovementAdapter adapter = new RVAccountMovementAdapter(lst);
+        binding.rvAllAccountMovement.setAdapter(adapter);
 
         return binding.getRoot();
     }
