@@ -10,10 +10,8 @@ public abstract class Entity {
         this.id = id;
     }
 
-    public String generateId(){
-        String randomUUID = UUID.randomUUID().toString();
-        this.id = randomUUID;
-        return randomUUID;
+    public void generateId(){
+        this.id = UUID.randomUUID().toString();
     }
 
 }

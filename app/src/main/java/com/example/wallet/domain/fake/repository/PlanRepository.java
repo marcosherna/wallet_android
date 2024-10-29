@@ -1,10 +1,8 @@
 package com.example.wallet.domain.fake.repository;
 
-import android.widget.ArrayAdapter;
 
 import com.example.wallet.domain.fake.date.LocalContext;
 import com.example.wallet.domain.models.AccountMovement;
-import com.example.wallet.domain.models.Entity;
 import com.example.wallet.domain.models.Plan;
 
 import java.util.ArrayList;

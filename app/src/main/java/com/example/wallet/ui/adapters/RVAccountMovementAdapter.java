@@ -1,5 +1,6 @@
 package com.example.wallet.ui.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ public class RVAccountMovementAdapter extends RecyclerView
 
     ArrayList<AccountMovement> itemsModels;
     public RVAccountMovementAdapter(ArrayList<AccountMovement> itemsModels){
-        this.itemsModels = new ArrayList<>();
         this.itemsModels = itemsModels;
     }
 

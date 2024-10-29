@@ -16,47 +16,36 @@ public class AccountMovementRepository extends BaseRepository<AccountMovement> {
     public AccountMovement get(String id) {
         return super.filterByClass(AccountMovement.class).stream()
                 .filter( acm -> acm.getId().equals(id))
-                .peek(acm -> {
-                    super.filterByClass(Plan.class).stream()
-                            .filter( p -> p.getId().equals(acm.getIdPlan()))
-                            .findFirst()
-                            .ifPresent( p -> {
-                                acm.setIdPlan(p.getId());
-                                acm.setPlan(p);
-                            });
-
-                }).findFirst().orElse(null);
+                .peek(acm -> super.filterByClass(Plan.class).stream()
+                        .filter( p -> p.getId().equals(acm.getIdPlan()))
+                        .findFirst()
+                        .ifPresent( p -> {
+                            acm.setIdPlan(p.getId());
+                            acm.setPlan(p);
+                        })).findFirst().orElse(null);
     }
 
     @Override
     public ArrayList<AccountMovement> getAll() {
-
-        ArrayList<AccountMovement> accountMovements = super.filterByClass(AccountMovement.class);
-
         return super.filterByClass(AccountMovement.class).stream()
-                .peek(acm -> {
-                    super.filterByClass(Plan.class).stream()
-                            .filter( p -> p.getId().equals(acm.getIdPlan()))
-                            .findFirst()
-                            .ifPresent( p -> {
-                                acm.setIdPlan(p.getId());
-                                acm.setPlan(p);
-                            });
-
-                }).collect(Collectors.toCollection(ArrayList::new));
+                .peek(acm -> super.filterByClass(Plan.class).stream()
+                        .filter( p -> p.getId().equals(acm.getIdPlan()))
+                        .findFirst()
+                        .ifPresent( p -> {
+                            acm.setIdPlan(p.getId());
+                            acm.setPlan(p);
+                        })).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<AccountMovement> getAllByType(AccountMovement.Type typeMovement){
         return super.filterByClass(AccountMovement.class).stream()
                 .filter(acm -> acm.getTypeMovements().equals(typeMovement))
-                .peek( acm -> {
-                    super.filterByClass(Plan.class).stream()
-                            .filter( p -> p.getId().equals(acm.getIdPlan()))
-                            .findFirst()
-                            .ifPresent( p -> {
-                                acm.setIdPlan(p.getId());
-                                acm.setPlan(p);
-                            });
-                }).collect(Collectors.toCollection(ArrayList::new));
+                .peek( acm -> super.filterByClass(Plan.class).stream()
+                        .filter( p -> p.getId().equals(acm.getIdPlan()))
+                        .findFirst()
+                        .ifPresent( p -> {
+                            acm.setIdPlan(p.getId());
+                            acm.setPlan(p);
+                        })).collect(Collectors.toCollection(ArrayList::new));
     }
 }

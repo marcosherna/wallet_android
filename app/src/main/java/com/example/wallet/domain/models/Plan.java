@@ -15,7 +15,6 @@ public class Plan extends Entity{
     private String description;
     private Date paymentDeadline;
     private Float targetAmount;
-    private Float currentAmount;
     private Status status;
     private final List<AccountMovement> movements;
 
@@ -66,17 +65,16 @@ public class Plan extends Entity{
     private Float sumAmountToTypeAccount(AccountMovement.Type type){
         return this.movements.stream()
                 .filter( m -> m.getTypeMovements() == type)
-                .map( m -> m.getAmount())
+                .map(AccountMovement::getAmount)
                 .reduce(0.0f, Float::sum);
     }
 
     public Float getCurrentAmount(){
-        float amountExpense = 0;
-        float amountRevenue = 0;
+        float amountExpense;
+        float amountRevenue;
         amountExpense = this.sumAmountToTypeAccount(AccountMovement.Type.EXPENSE);
         amountRevenue = this.sumAmountToTypeAccount(AccountMovement.Type.REVENUE);
-        this.currentAmount = amountRevenue - amountExpense;
-        return this.currentAmount;
+        return amountRevenue - amountExpense;
     }
 
     public List<AccountMovement> getMovements(){

@@ -34,7 +34,7 @@ public class AccountMovement extends Entity {
     }
 
     public Type getTypeMovements() { return  this.type; }
-    public void getTypeMovements(Type type){
+    public void setTypeMovements(Type type){
         this.type = type;
     }
 
