@@ -8,12 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentPlanBinding;
+import com.example.wallet.domain.fake.date.ExpandableListDataPump;
+import com.example.wallet.ui.adapters.CustomExpandableListAdapter;
+import com.example.wallet.ui.adapters.PlanExpandableListAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class PlanFragment extends Fragment {
 
@@ -25,6 +34,14 @@ public class PlanFragment extends Fragment {
         PlanViewModel planViewModel = new ViewModelProvider(this).get(PlanViewModel.class);
         binding = FragmentPlanBinding.inflate(inflater, container, false);
 
+        PlanExpandableListAdapter planExpandableListAdapter = new PlanExpandableListAdapter(getContext());
+        binding.expandableListPlan.setAdapter(planExpandableListAdapter);
+
+        planViewModel.getPlansWithSumary().observe(getViewLifecycleOwner(), plansSumary -> {
+            List<String> plansNames = new ArrayList<>(plansSumary.keySet());
+            planExpandableListAdapter.setTitlesPlans(plansNames);
+            planExpandableListAdapter.setPlansWithSumary(plansSumary);
+        });
         return binding.getRoot();
     }
 

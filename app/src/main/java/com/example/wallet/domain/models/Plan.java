@@ -62,7 +62,7 @@ public class Plan extends Entity{
         }
     }
 
-    private Float sumAmountToTypeAccount(AccountMovement.Type type){
+    public Float sumAmountToTypeAccount(AccountMovement.Type type){
         return this.movements.stream()
                 .filter( m -> m.getTypeMovements() == type)
                 .map(AccountMovement::getAmount)
@@ -81,7 +81,7 @@ public class Plan extends Entity{
         return this.movements;
     }
 
-    public float getRate(){
+    public Float getRate(){
         float rate = 0;
         float currentAmount = this.getCurrentAmount();
         if (this.targetAmount != null && this.targetAmount > 0) {
