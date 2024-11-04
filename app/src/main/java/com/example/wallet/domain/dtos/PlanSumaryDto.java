@@ -2,7 +2,7 @@ package com.example.wallet.domain.dtos;
 
 public class PlanSumaryDto {
     private final String id;
-    private final String idGroup;
+    private final String idPlan;
     private final String groupDescription;
     private final String totalExpended;
     private final String totalRevenue;
@@ -11,9 +11,9 @@ public class PlanSumaryDto {
     private final String plazo;
     private final String status;
 
-    public PlanSumaryDto(String id, String idGroup, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String plazo, String status) {
+    public PlanSumaryDto(String id, String idPlan, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String plazo, String status) {
         this.id = id;
-        this.idGroup = idGroup;
+        this.idPlan = idPlan;
         this.groupDescription = groupDescription;
         this.totalExpended = totalExpended;
         this.totalRevenue = totalRevenue;
@@ -26,8 +26,8 @@ public class PlanSumaryDto {
         return id;
     }
 
-    public String getIdGroup() {
-        return idGroup;
+    public String getIdPlan() {
+        return idPlan;
     }
 
     public String getTotalExpended() {
@@ -57,7 +57,6 @@ public class PlanSumaryDto {
         return status;
     }
 
-    // Métodos getters e setters para os campos
 
 
 }

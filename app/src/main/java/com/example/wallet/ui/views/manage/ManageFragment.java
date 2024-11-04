@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentManageBinding;
+import com.example.wallet.domain.models.AccountMovement;
 
 public class ManageFragment extends Fragment {
 
@@ -36,16 +37,16 @@ public class ManageFragment extends Fragment {
 
 
 
-        binding.btnAddRevenue.setOnClickListener(NavigateToAddCountMovementFragment("Ingresos", 0));
-        binding.btnAddExpense.setOnClickListener(NavigateToAddCountMovementFragment("Egresos", 1));
+        binding.btnAddRevenue.setOnClickListener(NavigateToAddCountMovementFragment("Ingresos", AccountMovement.Type.REVENUE));
+        binding.btnAddExpense.setOnClickListener(NavigateToAddCountMovementFragment("Egresos", AccountMovement.Type.EXPENSE));
 
         return binding.getRoot();
     }
 
-    private View.OnClickListener NavigateToAddCountMovementFragment(String title, int typeMovement){
+    private View.OnClickListener NavigateToAddCountMovementFragment(String title, AccountMovement.Type typeMovement){
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
-        bundle.putInt("typeMovement", typeMovement);
+        bundle.putSerializable("typeMovement", typeMovement);
         return view -> navController.navigate(R.id.navigation_manage_to_navigation_add_account, bundle);
     }
 

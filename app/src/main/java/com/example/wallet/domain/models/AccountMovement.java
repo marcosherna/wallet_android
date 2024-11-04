@@ -20,6 +20,7 @@ public class AccountMovement extends Entity {
         this.type = type;
         this.idPlan = idPlan;
         this.amount = amount;
+        this.date = new Date();
     }
 
 

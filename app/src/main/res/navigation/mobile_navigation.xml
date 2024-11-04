@@ -45,7 +45,7 @@
 
         <argument
             android:name="typeMovement"
-            app:argType="integer" />
+            app:argType="com.example.wallet.domain.models.AccountMovement$Type" />
 
     </fragment>
 

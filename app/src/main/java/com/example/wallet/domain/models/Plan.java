@@ -86,6 +86,7 @@ public class Plan extends Entity{
         float currentAmount = this.getCurrentAmount();
         if (this.targetAmount != null && this.targetAmount > 0) {
             rate = (currentAmount / this.targetAmount) * 100;
+            rate = rate == 0f ? 100 : rate;
         }
         return rate;
     }
