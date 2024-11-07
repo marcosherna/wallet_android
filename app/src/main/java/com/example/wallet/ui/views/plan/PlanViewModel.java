@@ -8,6 +8,7 @@ import com.example.wallet.domain.dtos.PlanSumaryDto;
 import com.example.wallet.domain.fake.repository.PlanRepository;
 import com.example.wallet.domain.models.AccountMovement;
 import com.example.wallet.domain.models.Plan;
+import com.example.wallet.ui.models.PlanUI;
 import com.example.wallet.utils.DateFormatHelper;
 
 import java.util.ArrayList;
@@ -30,6 +31,11 @@ public class PlanViewModel extends ViewModel {
         this.transformDataToDto();
     }
 
+    public boolean addPlan(PlanUI planUI){
+        // TODO: implement method
+        return false;
+    }
+
     public void transformDataToDto(){
         if (this.planRepository != null){
             ArrayList<Plan> plans = this.planRepository.getAll();
@@ -38,6 +44,7 @@ public class PlanViewModel extends ViewModel {
             plans.forEach(plan -> {
                 Float totalExpense = plan.sumAmountToTypeAccount(AccountMovement.Type.EXPENSE);
                 Float totalRevenue = plan.sumAmountToTypeAccount(AccountMovement.Type.REVENUE);
+
 
                 PlanSumaryDto planSumaryDto = new PlanSumaryDto("",
                         plan.getId(),

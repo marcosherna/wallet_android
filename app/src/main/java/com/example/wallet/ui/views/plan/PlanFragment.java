@@ -12,12 +12,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentPlanBinding;
 import com.example.wallet.domain.fake.date.ExpandableListDataPump;
+import com.example.wallet.ui.adapters.BSDFormPLan;
 import com.example.wallet.ui.adapters.CustomExpandableListAdapter;
 import com.example.wallet.ui.adapters.PlanExpandableListAdapter;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +45,19 @@ public class PlanFragment extends Fragment {
             planExpandableListAdapter.setTitlesPlans(plansNames);
             planExpandableListAdapter.setPlansWithSumary(plansSumary);
         });
+
+        binding.btnActionButton.setOnClickListener(__ -> {
+
+            BSDFormPLan adapterDialog = new BSDFormPLan();
+            adapterDialog.setTitle("Nuevo Plan");
+
+            adapterDialog.setOnSaveClickListener( (planUI) -> {
+                boolean result = planViewModel.addPlan(planUI);
+                Toast.makeText(getContext(), result? "Guardado": "Error", Toast.LENGTH_SHORT).show();
+            });
+            adapterDialog.show(getActivity().getSupportFragmentManager(), "Form");
+        });
+
         return binding.getRoot();
     }
 

@@ -12,6 +12,7 @@
         android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingEnd="16dp"
         android:layout_marginVertical="16dp"
+        android:textAllCaps="true"
         android:textSize="14sp"
         android:textStyle="bold"
         tools:text="PLAN NUEVO LIBRO"
