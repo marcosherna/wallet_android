@@ -22,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
-        android:textSize="14sp"  />
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/edtName"
@@ -30,13 +31,17 @@
         android:layout_height="wrap_content"
         android:hint="Nombre"
         android:padding="8dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp"
+        android:minHeight="48dp"
+        android:paddingStart="6dp"
+        android:background="@drawable/rounded_edittext"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/tvTypeMovement"
@@ -58,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="16dp">
 
         <EditText
             android:id="@+id/edtAmount"
@@ -67,34 +72,43 @@
             android:inputType="numberDecimal"
             android:hint="00.0"
             android:layout_weight="1"
+            android:minHeight="48dp"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="12dp"
+            android:paddingStart="6dp"
+            android:background="@drawable/rounded_edittext"/>
 
         <EditText
             android:id="@+id/edtTerm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="time"
             android:layout_weight="1"
             android:hint="3 Meses"
+            android:minHeight="48dp"
             android:padding="8dp"
-            android:layout_marginBottom="12dp"/>
+            android:focusable="false"
+            android:inputType="none"
+            android:layout_marginBottom="12dp"
+            android:paddingStart="6dp"
+            android:background="@drawable/rounded_edittext"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Concepto"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/edtDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:hint="Concepto / Descriptcion"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="16dp"
+        android:paddingStart="6dp"
+        android:background="@drawable/rounded_edittext"/>
 
     <Button
         android:id="@+id/btnSaveNewPlan"

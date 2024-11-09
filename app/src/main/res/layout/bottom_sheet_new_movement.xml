@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Planes"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_marginBottom="8dp"/>
 
     <Spinner
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@drawable/rounded_spinner"
         android:hint="Seleccione una opcion"
         android:layout_marginBottom="16dp"/>
 
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monto"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_marginBottom="8dp"/>
 
             <EditText
@@ -55,7 +55,9 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:inputType="numberDecimal"
-                android:hint="Ejemplo: $100.00"
+                android:hint="$100.00"
+                android:paddingStart="6dp"
+                android:background="@drawable/rounded_edittext"
                 android:layout_marginBottom="16dp"/>
         </LinearLayout>
 
@@ -77,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ingreso"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -85,9 +87,6 @@
         android:id="@+id/btnSaveMovement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#2196F3"
-        android:padding="12dp"/>
+        android:text="Guardar" />
 
 </LinearLayout>
