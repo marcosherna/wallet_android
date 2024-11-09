@@ -46,7 +46,7 @@ public class Plan extends Entity{
     }
 
     public Float getTargetAmount() { return this.targetAmount; }
-    public void getTargetAmount(Float targetAmount){
+    public void setTargetAmount(Float targetAmount){
         this.targetAmount = targetAmount;
     }
 

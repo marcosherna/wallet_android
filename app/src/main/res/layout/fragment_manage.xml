@@ -9,22 +9,31 @@
     tools:context=".ui.views.manage.ManageFragment">
 
 
+<!--    <Button-->
+<!--        android:id="@+id/btn_add_revenue"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/txt_revenue"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_add_expense"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/txt_expense"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_add_revenue" />-->
+
     <Button
-        android:id="@+id/btn_add_revenue"
+        android:id="@+id/btnNewMovement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_revenue"
+        android:text="Nuevo Movimiento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_add_expense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_expense"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add_revenue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

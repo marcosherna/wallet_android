@@ -6,7 +6,6 @@ public class AccountMovementUI {
     private final String date;
     private final String idPlan;
     private boolean isCheck;
-
     public AccountMovementUI(String id, String amount, String date, String idPlan) {
         this.id = id;
         this.amount = amount;
