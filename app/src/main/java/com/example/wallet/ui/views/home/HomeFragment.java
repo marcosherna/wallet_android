@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wallet.databinding.FragmentHomeBinding;
+import com.example.wallet.ui.adapters.VPAdapter;
 import com.example.wallet.ui.views.home.tabs.all.TabAllFragment;
 import com.example.wallet.ui.views.home.tabs.expense.TabExpenseFragment;
 import com.example.wallet.ui.views.home.tabs.plan.TabPlanFragment;
@@ -37,7 +38,17 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        TabHelper.setupTabLayoutAndViewPager(this, binding.tabLayout, binding.viewPager, tabs);
+        TabHelper tabHelper = new TabHelper(this, binding.tabLayout, binding.viewPager);
+        this.tabs.forEach(tabHelper::setTab);
+        VPAdapter adapter = new VPAdapter(this);
+        tabHelper.setupTabLayoutAndViewPager(adapter);
+
+        tabHelper.setOnCustomTabSelectedListener(tab -> {
+            //tab 3 -> planes
+            int visibility = tab.getPosition() == 3 ? View.GONE : View.VISIBLE;
+            binding.headerContainer.setVisibility(visibility);
+
+        });
 
         return root;
     }

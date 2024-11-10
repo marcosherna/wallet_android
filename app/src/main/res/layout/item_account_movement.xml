@@ -18,8 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="start"
             android:textStyle="bold"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
             tools:text="INGRESO"
             android:textSize="14sp"/>
         <TextView
@@ -27,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="start"
             tools:text="$25.00"
             android:textSize="14sp"/>
         <TextView

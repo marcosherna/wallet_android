@@ -1,6 +1,9 @@
 package com.example.wallet.ui.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +27,18 @@ public class RVAccountMovementAdapter extends RecyclerView
 
     public static class AccountMovementHolder extends RecyclerView.ViewHolder {
         ItemAccountMovementBinding binding;
+        Context context;
         public AccountMovementHolder(@NonNull View itemView) {
             super(itemView);
             this.binding = ItemAccountMovementBinding.bind(itemView);
+            this.context = itemView.getContext();
         }
 
         public void render(AccountMovement item){
+            int color = item.getTypeMovements() == AccountMovement.Type.EXPENSE ? R.color.teal_700 : R.color.expense_color;
             String typeMovement = item.getTypeMovements() == AccountMovement.Type.EXPENSE ? "Egreso":"Ingreso";
             this.binding.tvTypeMovement.setText(typeMovement);
+            this.binding.tvTypeMovement.setTextColor(context.getColor(color));
             this.binding.tvAmount.setText(item.getAmount().toString());
             this.binding.tvIdPlan.setText(item.getIdPlan());
         }

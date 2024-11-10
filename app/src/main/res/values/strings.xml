@@ -10,4 +10,10 @@
     <string name="txt_tip">Consejos</string>
     <string name="txt_manage">Gestion</string>
     <string name="txt_plan">Planes</string>
+    
+    <string name="txt_amount">Monto</string>
+    <string name="txt_date_entry">Fecha</string>
+    <string name="txt_plan_id">Id Plan</string>
+    <string name="txt_new_button">Nuevo</string>
+    <string name="txt_type">Tipo</string>
 </resources>

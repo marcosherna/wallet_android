@@ -7,25 +7,66 @@ import com.example.wallet.ui.adapters.VPAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class TabHelper {
-    public static void setupTabLayoutAndViewPager(Fragment context, TabLayout tabLayout, ViewPager2 viewPager, ArrayList<Fragment> fragments) {
-        VPAdapter vpAdapter = new VPAdapter(context);
+    OnCustomTabSelectedListener listener;
+    public interface  OnCustomTabSelectedListener{
+        void OnTabSelected(TabLayout.Tab tab);
+    }
+    public void setOnCustomTabSelectedListener(OnCustomTabSelectedListener listener){
+        this.listener = listener;
+    }
 
-        for (Fragment fragment : fragments) {
-            vpAdapter.addFragment(fragment);
-        }
+    Fragment context;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    List<Fragment> tabs;
 
-        viewPager.setAdapter(vpAdapter);
+    public TabHelper(Fragment context, TabLayout tabLayout, ViewPager2 viewPager2) {
+        this.context = context;
+        this.tabLayout = tabLayout;
+        this.viewPager2 = viewPager2;
+        tabs = new ArrayList<>();
+    }
 
-        tabLayout.addOnTabSelectedListener(new TabSelectedListener(viewPager));
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+    public void setTab(Fragment tab){
+        this.tabs.add(tab);
+    }
+
+
+    public void setupTabLayoutAndViewPager(VPAdapter adapter) {
+
+        tabs.forEach(adapter::addFragment);
+        viewPager2.setAdapter(adapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+                if(listener != null){
+                    listener.OnTabSelected(tab);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 Objects.requireNonNull(tabLayout.getTabAt(position)).select();
             }
         });
+
     }
 }

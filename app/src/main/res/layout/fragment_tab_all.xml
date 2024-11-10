@@ -6,8 +6,14 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
     android:orientation="vertical"
-    android:paddingTop="16dp"
     tools:context=".ui.views.home.tabs.all.TabAllFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" /> <!-- Oculto inicialmente -->
 
 
     <androidx.recyclerview.widget.RecyclerView

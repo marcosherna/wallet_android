@@ -53,6 +53,13 @@ public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMo
         return this.movements.size();
     }
 
+    public void checkAll(boolean isCheck){
+        this.movements.forEach( movement -> {
+            movement.setCheck(isCheck);
+        });
+        notifyItemRangeChanged(0, movements.size());
+    }
+
     public static class  AccountMovementWithCheckHolder extends RecyclerView.ViewHolder {
         ItemAccountMovementCheckSelectorBinding binding;
         public AccountMovementWithCheckHolder(@NonNull View itemView) {
