@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_plan" />
 
-    </com.google.android.material.tabs.TabLayout>\
+    </com.google.android.material.tabs.TabLayout>
 
 <!--header-->
     <LinearLayout

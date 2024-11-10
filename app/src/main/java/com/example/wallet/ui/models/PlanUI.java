@@ -1,7 +1,5 @@
 package com.example.wallet.ui.models;
 
-import java.util.Date;
-
 public class PlanUI {
     private String id;
     private String name;

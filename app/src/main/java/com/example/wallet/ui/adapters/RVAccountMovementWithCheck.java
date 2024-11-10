@@ -3,16 +3,13 @@ package com.example.wallet.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallet.R;
 import com.example.wallet.databinding.ItemAccountMovementCheckSelectorBinding;
-import com.example.wallet.domain.models.AccountMovement;
 import com.example.wallet.ui.models.AccountMovementUI;
-import com.example.wallet.utils.DateFormatHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +51,7 @@ public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMo
     }
 
     public void checkAll(boolean isCheck){
-        this.movements.forEach( movement -> {
-            movement.setCheck(isCheck);
-        });
+        this.movements.forEach( movement -> movement.setCheck(isCheck));
         notifyItemRangeChanged(0, movements.size());
     }
 
@@ -74,9 +69,7 @@ public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMo
             this.binding.tvDate.setText(movement.getDate());
             this.binding.tvIdPlan.setText(movement.getIdPlan());
 
-            this.binding.cbMovement.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-                movement.setCheck(isChecked);
-            }));
+            this.binding.cbMovement.setOnCheckedChangeListener(((buttonView, isChecked) -> movement.setCheck(isChecked)));
         }
     }
 

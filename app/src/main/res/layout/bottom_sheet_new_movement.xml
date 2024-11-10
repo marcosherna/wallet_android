@@ -57,6 +57,7 @@
                 android:inputType="numberDecimal"
                 android:hint="$100.00"
                 android:paddingStart="6dp"
+                android:paddingEnd="0dp"
                 android:background="@drawable/rounded_edittext"
                 android:layout_marginBottom="16dp"/>
         </LinearLayout>

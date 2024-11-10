@@ -12,7 +12,6 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.wallet.R;
 import com.example.wallet.databinding.BottomSheetNewMovementBinding;
 import com.example.wallet.ui.models.AccountMovementUI;
 import com.example.wallet.ui.models.PlanUI;
@@ -65,7 +64,7 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
                 .map(PlanUI::getName).collect(Collectors.toList());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(),
+                requireContext(),
                 com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
                 plansNames);
 
@@ -98,7 +97,7 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
         this.binding.btnSaveMovement.setOnClickListener(__ -> {
             if(listener != null){
                 String idPlan = planSelected != null ? planSelected.getId() : "";
-                this.movementUI = new AccountMovementUI("", amount, new Date().toString(), planSelected.getId());
+                this.movementUI = new AccountMovementUI("", amount, new Date().toString(), idPlan);
                 listener.OnClick(this.movementUI);
             }
         });

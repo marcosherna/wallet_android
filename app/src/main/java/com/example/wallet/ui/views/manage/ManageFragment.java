@@ -17,8 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.wallet.R;
-import com.example.wallet.databinding.FragmentManageBinding;
-import com.example.wallet.domain.models.AccountMovement;
+import com.example.wallet.databinding.FragmentManageBinding; import com.example.wallet.domain.models.AccountMovement;
 import com.example.wallet.ui.adapters.BDSFormMovementDialog;
 import com.example.wallet.ui.adapters.RVAccountMovementWithCheck;
 
@@ -42,9 +41,7 @@ public class ManageFragment extends Fragment {
         rvAccountMovementWithCheckdapter = new RVAccountMovementWithCheck();
         binding.rvAddAccountMovement.setAdapter(rvAccountMovementWithCheckdapter);
 
-        manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> {
-            dialog.setplans(planUIS);
-        });
+        manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> dialog.setplans(planUIS));
 
         binding.btnNewMovement.setOnClickListener(__ -> {
 
@@ -56,17 +53,13 @@ public class ManageFragment extends Fragment {
             dialog.show(getParentFragmentManager(), "BDSFormMovementDialog");
         });
 
-        manageViewModel.getMovements().observe(getViewLifecycleOwner(), movementUIS -> {
-            movementUIS.forEach(rvAccountMovementWithCheckdapter::addMovement);
-        });
+        manageViewModel.getMovements()
+                .observe(getViewLifecycleOwner(), movementUIS ->
+                        movementUIS
+                                .forEach(rvAccountMovementWithCheckdapter::addMovement));
 
         // Seleccionar todos
-        this.binding.cbMovementCheckAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                rvAccountMovementWithCheckdapter.checkAll(isChecked);
-            }
-        });
+        this.binding.cbMovementCheckAll.setOnCheckedChangeListener((buttonView, isChecked) -> rvAccountMovementWithCheckdapter.checkAll(isChecked));
 
         return binding.getRoot();
     }
