@@ -32,7 +32,7 @@ public class TabExpenseFragment extends Fragment {
         AccountMovementRepository repository = new AccountMovementRepository();
         ArrayList<AccountMovement> lst = repository.getAllByType(AccountMovement.Type.EXPENSE);
 
-        binding.rvAllAccountExpense.setAdapter(new RVAccountMovementAdapter(lst));
+        binding.rvAllAccountExpense.setAdapter(new RVAccountMovementAdapter());
 
 
         return binding.getRoot();

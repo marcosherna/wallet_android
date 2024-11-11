@@ -10,16 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallet.R;
 import com.example.wallet.databinding.ItemAccountMovementBinding;
-import com.example.wallet.domain.models.AccountMovement;
+import com.example.wallet.ui.models.AccountMovementUI;
+import com.example.wallet.ui.models.TypeAccountMovement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RVAccountMovementAdapter extends RecyclerView
         .Adapter<RVAccountMovementAdapter.AccountMovementHolder> {
 
-    ArrayList<AccountMovement> itemsModels;
-    public RVAccountMovementAdapter(ArrayList<AccountMovement> itemsModels){
+    List<AccountMovementUI> itemsModels;
+    public RVAccountMovementAdapter( ){
+        this.itemsModels = new ArrayList<>();
+    }
+
+    public void setItems(List<AccountMovementUI> itemsModels){
         this.itemsModels = itemsModels;
+        notifyItemRangeChanged(0, this.itemsModels.size());
     }
 
     public static class AccountMovementHolder extends RecyclerView.ViewHolder {
@@ -31,12 +38,12 @@ public class RVAccountMovementAdapter extends RecyclerView
             this.context = itemView.getContext();
         }
 
-        public void render(AccountMovement item){
-            int color = item.getTypeMovements() == AccountMovement.Type.EXPENSE ? R.color.teal_700 : R.color.expense_color;
-            String typeMovement = item.getTypeMovements() == AccountMovement.Type.EXPENSE ? "Egreso":"Ingreso";
+        public void render(AccountMovementUI item){
+            int color = item.getTypeAccountMovement() == TypeAccountMovement.EXPENSE ? R.color.teal_700 : R.color.expense_color;
+            String typeMovement = item.getTypeAccountMovement() == TypeAccountMovement.EXPENSE ? "Egreso":"Ingreso";
             this.binding.tvTypeMovement.setText(typeMovement);
             this.binding.tvTypeMovement.setTextColor(context.getColor(color));
-            this.binding.tvAmount.setText(String.format(item.getAmount().toString()));
+            this.binding.tvAmount.setText(item.getAmount());
             this.binding.tvIdPlan.setText(item.getIdPlan());
         }
     }
@@ -53,7 +60,7 @@ public class RVAccountMovementAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull AccountMovementHolder holder, int position) {
-        AccountMovement item = this.itemsModels.get(position);
+        AccountMovementUI item = this.itemsModels.get(position);
         holder.render(item);
     }
 

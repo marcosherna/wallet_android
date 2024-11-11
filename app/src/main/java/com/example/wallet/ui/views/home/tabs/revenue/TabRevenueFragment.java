@@ -31,7 +31,7 @@ public class TabRevenueFragment extends Fragment {
 
         AccountMovementRepository repository = new AccountMovementRepository();
         ArrayList<AccountMovement> lst = repository.getAllByType(AccountMovement.Type.REVENUE);
-        binding.rvAllAccountRevenue.setAdapter(new RVAccountMovementAdapter(lst));
+        binding.rvAllAccountRevenue.setAdapter(new RVAccountMovementAdapter());
 
         return binding.getRoot();
     }

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.example.wallet.databinding.BottomSheetNewMovementBinding;
 import com.example.wallet.ui.models.AccountMovementUI;
 import com.example.wallet.ui.models.PlanUI;
+import com.example.wallet.ui.models.TypeAccountMovement;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
     List<PlanUI> plans;
     PlanUI planSelected;
     OnclickListener listener;
+    TypeAccountMovement typeAccountMovement;
     public BDSFormMovementDialog() {
         this.plans = new ArrayList<>();
     }
@@ -97,7 +99,8 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
         this.binding.btnSaveMovement.setOnClickListener(__ -> {
             if(listener != null){
                 String idPlan = planSelected != null ? planSelected.getId() : "";
-                this.movementUI = new AccountMovementUI("", amount, new Date().toString(), idPlan);
+                typeAccountMovement = binding.cbTypeMovement.isChecked() ? TypeAccountMovement.REVENUE : TypeAccountMovement.EXPENSE;
+                this.movementUI = new AccountMovementUI("", amount, new Date().toString(), idPlan, typeAccountMovement);
                 listener.OnClick(this.movementUI);
             }
         });

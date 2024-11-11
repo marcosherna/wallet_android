@@ -6,11 +6,13 @@ public class AccountMovementUI {
     private final String date;
     private final String idPlan;
     private boolean isCheck;
-    public AccountMovementUI(String id, String amount, String date, String idPlan) {
+    private TypeAccountMovement typeAccountMovement;
+    public AccountMovementUI(String id, String amount, String date, String idPlan, TypeAccountMovement typeAccountMovement) {
         this.id = id;
         this.amount = amount;
         this.date = date;
         this.idPlan = idPlan;
+        this.typeAccountMovement = typeAccountMovement;
         this.isCheck = false;
     }
 
@@ -34,5 +36,13 @@ public class AccountMovementUI {
     }
     public String getId() {
         return id;
+    }
+
+    public TypeAccountMovement getTypeAccountMovement() {
+        return typeAccountMovement;
+    }
+
+    public void setTypeAccountMovement(TypeAccountMovement typeAccountMovement) {
+        this.typeAccountMovement = typeAccountMovement;
     }
 }

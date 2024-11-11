@@ -4,6 +4,7 @@ import com.example.wallet.domain.models.AccountMovement;
 import com.example.wallet.domain.models.Plan;
 import com.example.wallet.ui.models.AccountMovementUI;
 import com.example.wallet.ui.models.PlanUI;
+import com.example.wallet.ui.models.TypeAccountMovement;
 import com.example.wallet.utils.DateFormatHelper;
 
 public class Mapper {
@@ -13,7 +14,9 @@ public class Mapper {
                 movement.getId(),
                 movement.getAmount().toString(),
                 dateFormat,
-                movement.getIdPlan());
+                movement.getIdPlan(), // TODO: refactorizar el tipo
+                movement.getTypeMovements() == AccountMovement.Type.EXPENSE ? TypeAccountMovement.EXPENSE: TypeAccountMovement.REVENUE
+        );
     }
 
     public static PlanUI PlanToUI(Plan plan){
