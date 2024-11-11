@@ -39,7 +39,7 @@ public class RVAccountMovementAdapter extends RecyclerView
         }
 
         public void render(AccountMovementUI item){
-            int color = item.getTypeAccountMovement() == TypeAccountMovement.EXPENSE ? R.color.teal_700 : R.color.expense_color;
+            int color = item.getTypeAccountMovement() == TypeAccountMovement.REVENUE ? R.color.teal_700 : R.color.expense_color;
             String typeMovement = item.getTypeAccountMovement() == TypeAccountMovement.EXPENSE ? "Egreso":"Ingreso";
             this.binding.tvTypeMovement.setText(typeMovement);
             this.binding.tvTypeMovement.setTextColor(context.getColor(color));

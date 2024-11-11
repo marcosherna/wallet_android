@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Observable;
 
 public class TabAllViewModel extends ViewModel {
     final AccountMovementRepository accountMovementRepository;
