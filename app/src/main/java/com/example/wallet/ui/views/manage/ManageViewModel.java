@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.reactivex.rxjava3.core.Completable;
+
 public class ManageViewModel extends ViewModel {
     final PlanRepository planRepository;
     final AccountMovementRepository accountMovementRepository;
@@ -43,8 +45,19 @@ public class ManageViewModel extends ViewModel {
     public void initializeMovement(){
         List<AccountMovementUI> movementUIS = this.accountMovementRepository.getAll().stream()
                 .map(Mapper::AMovementToUI).collect(Collectors.toList());
-
         this.movements.setValue(movementUIS);
+    }
+
+    public Completable deletingMovements(List<AccountMovementUI> selections){
+        return Completable.create(emitter -> {
+            try {
+                // TODO: Elimiar todos los planes seleccionados
+                Thread.sleep(1000);
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
     }
 
 
