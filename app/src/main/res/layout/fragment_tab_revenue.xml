@@ -7,10 +7,16 @@
     android:paddingHorizontal="16dp"
     tools:context=".ui.views.home.tabs.revenue.TabRevenueFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_all_account_revenue"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swpRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_all_account_revenue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>
