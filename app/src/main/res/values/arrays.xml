@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="movements_options">
+        <item>Filtrar</item>
+        <item>Todos</item>
+        <item>Ingresos</item>
+        <item>Egresos</item>
+        <item>Más Recientes</item>
+    </string-array>
+</resources>

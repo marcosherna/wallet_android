@@ -13,6 +13,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cargando..."
+        android:text="@string/txt_loading"
         android:paddingTop="10dp"/>
 </LinearLayout>

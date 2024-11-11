@@ -57,9 +57,9 @@ public class AddAccountMovementFragment extends Fragment {
 
         addAccountMovementViewModel.setTypeAccount(this.typeAccountMovement);
 
-        addAccountMovementViewModel.getMovements()
-                .observe(getViewLifecycleOwner(), movements ->
-                        movements.forEach(rvAdapter::addMovement));
+//        addAccountMovementViewModel.getMovements()
+//                .observe(getViewLifecycleOwner(), movements ->
+//                        movements.forEach(rvAdapter::addMovement));
 
 
         binding.fabDeleteAccountMovement.setOnClickListener(new View.OnClickListener() {

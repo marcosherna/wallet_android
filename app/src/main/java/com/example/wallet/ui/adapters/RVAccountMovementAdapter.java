@@ -25,8 +25,12 @@ public class RVAccountMovementAdapter extends RecyclerView
     }
 
     public void setItems(List<AccountMovementUI> itemsModels){
-        this.itemsModels = itemsModels;
-        notifyItemRangeChanged(0, this.itemsModels.size());
+        if(this.itemsModels != null){
+            this.itemsModels.clear();
+            this.itemsModels = itemsModels;
+            notifyDataSetChanged();
+        }
+
     }
 
     public static class AccountMovementHolder extends RecyclerView.ViewHolder {

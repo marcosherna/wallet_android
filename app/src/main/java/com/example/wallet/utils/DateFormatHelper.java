@@ -6,7 +6,11 @@ import java.util.Locale;
 
 public class DateFormatHelper {
     public static String format(Date date, String template){
-        SimpleDateFormat simple = new SimpleDateFormat(template, new Locale("es", "ES"));
+        SimpleDateFormat simple = new SimpleDateFormat(template, Locale.getDefault());
         return simple.format(date);
+    }
+
+    public static SimpleDateFormat formatAt(Date date, String template){
+        return new SimpleDateFormat(template, Locale.getDefault());
     }
 }

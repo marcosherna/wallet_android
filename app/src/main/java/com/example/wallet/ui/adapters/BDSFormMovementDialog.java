@@ -58,7 +58,7 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String amount = this.binding.edtAmount.getText().toString();
+
         this.binding.txtTypeMovement.setText("Ingreso");
         this.binding.cbTypeMovement.setChecked(true);
         
@@ -99,14 +99,18 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
         this.binding.btnSaveMovement.setOnClickListener(__ -> {
             if(listener != null){
                 String idPlan = planSelected != null ? planSelected.getId() : "";
+                String amount = this.binding.edtAmount.getText().toString();
                 typeAccountMovement = binding.cbTypeMovement.isChecked() ? TypeAccountMovement.REVENUE : TypeAccountMovement.EXPENSE;
                 this.movementUI = new AccountMovementUI("", amount, new Date().toString(), idPlan, typeAccountMovement);
                 listener.OnClick(this.movementUI);
             }
         });
-
-
     }
+
+    public void clearForm(){
+        binding.edtAmount.setText("");
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

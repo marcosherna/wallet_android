@@ -13,7 +13,6 @@ import com.example.wallet.domain.dtos.PlanSumaryDto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -39,7 +38,11 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     public void setPlansWithSumary(HashMap<String, List<PlanSumaryDto>> plansWithSumary){
-        this.plansWithSumary = plansWithSumary;
+        if(this.plansWithSumary != null){
+            this.plansWithSumary.clear();
+            this.plansWithSumary = plansWithSumary;
+            notifyDataSetChanged();
+        }
     }
 
     @Override

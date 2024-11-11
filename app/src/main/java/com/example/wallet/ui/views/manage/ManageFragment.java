@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.wallet.R;
@@ -22,8 +24,14 @@ import com.example.wallet.ui.adapters.BDSFormMovementDialog;
 import com.example.wallet.ui.adapters.LoadingDialogFragment;
 import com.example.wallet.ui.adapters.RVAccountMovementWithCheck;
 import com.example.wallet.ui.models.AccountMovementUI;
+import com.example.wallet.ui.models.TypeAccountMovement;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -49,25 +57,46 @@ public class ManageFragment extends Fragment {
         manageViewModel = new ViewModelProvider(this).get(ManageViewModel.class);
         binding = FragmentManageBinding.inflate(inflater, container, false);
 
+        this.loadData();
+
         rvAccountMovementWithCheckdapter = new RVAccountMovementWithCheck();
         binding.rvAddAccountMovement.setAdapter(rvAccountMovementWithCheckdapter);
+        binding.swpRefreshLayout.setOnRefreshListener(this::loadData);
 
-        manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> dialog.setplans(planUIS));
 
+
+
+        // muestara al dialog con el formulario para un nuevo movimiento
         binding.btnNewMovement.setOnClickListener(__ -> {
 
             dialog.setListener( movementUI -> {
-                // TODO: implementar el metodo para agregar un nuevo movimiento
-                Toast.makeText(getContext(), movementUI.toString(), Toast.LENGTH_SHORT).show();
+                if (movementUI.getAmount().isEmpty()){
+                    Toast.makeText(getContext(), "Digita un monto", Toast.LENGTH_SHORT).show();
+                }else {
+                    LoadingDialogFragment loading = new LoadingDialogFragment();
+                    loading.show(requireActivity().getSupportFragmentManager(), "loadingDialogAdd");
+
+                    disposable.add(
+                            manageViewModel.addMovements(movementUI)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            () -> {
+                                                loading.dismiss();
+                                                dialog.clearForm();
+                                                dialog.dismiss();
+                                            },
+                                            throwable -> {
+                                                loading.dismiss();
+                                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                            }
+                                    )
+                    );
+                }
             });
 
             dialog.show(getParentFragmentManager(), "BDSFormMovementDialog");
         });
-
-        manageViewModel.getMovements()
-                .observe(getViewLifecycleOwner(), movementUIS ->
-                        movementUIS
-                                .forEach(rvAccountMovementWithCheckdapter::addMovement));
 
         // Seleccionar todos
         this.binding.cbMovementCheckAll.setOnCheckedChangeListener((buttonView, isChecked) -> rvAccountMovementWithCheckdapter.checkAll(isChecked));
@@ -99,26 +128,99 @@ public class ManageFragment extends Fragment {
 
         });
 
+        // Filtrar los datos
+        this.binding.spFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    if(position != 0 && manageViewModel.getMovements().getValue() != null){
+                        List<AccountMovementUI> cacheList = manageViewModel.getMovementUISCache();
+
+                        switch (position) {
+                            case 1: { // 1 -> Todos
+                                rvAccountMovementWithCheckdapter.addMovement(cacheList);
+                            } break;
+                            case 2: { // 2 -> Ingresos
+                                manageViewModel.filterByType(TypeAccountMovement.REVENUE);
+                            } break;
+                            case 3: { // 3 -> Egresos
+                                manageViewModel.filterByType(TypeAccountMovement.EXPENSE);;
+                            } break;
+                            case 4: { // 4 -> Mas recientes
+                                manageViewModel.getAllRecent();
+                            } break;
+                        }
+
+
+                    }
+                } catch (Exception e){
+                    Log.println(Log.ERROR,"EERR",  e.getMessage());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Opcional: Manejar el caso donde no hay selección
+            }
+        });
+
+        manageViewModel.getMovements()
+                .observe(getViewLifecycleOwner(),rvAccountMovementWithCheckdapter::addMovement);
+
+        manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> dialog.setplans(planUIS));
         return binding.getRoot();
+    }
+
+    private void loadData(){
+        try {
+            binding.swpRefreshLayout.setRefreshing(true);
+            disposable.add(
+                    manageViewModel.initialize()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    () -> binding.swpRefreshLayout.setRefreshing(false),
+                                    throwable -> {
+                                        binding.swpRefreshLayout.setRefreshing(false);
+                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                            )
+            );
+        } catch (Exception e){
+            Log.e("loadData", e.getMessage());
+        }
+
     }
 
     // Ejecuta la eliminación de los elementos seleccionados
     private void executeDelete(List<AccountMovementUI> selections) {
-        LoadingDialogFragment loading = new LoadingDialogFragment();
-        loading.show(requireActivity().getSupportFragmentManager(), "loadingDialog");
+        try {
+            LoadingDialogFragment loading = new LoadingDialogFragment();
+            loading.show(requireActivity().getSupportFragmentManager(), "loadingDialog");
 
-        disposable.add(
-                manageViewModel.deletingMovements(selections)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                loading::dismiss,
-                                throwable -> {
-                                    loading.dismiss();
-                                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                                }
-                        )
-        );
+            disposable.add(
+                    manageViewModel.deletingMovements(selections)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    () -> {
+                                        loading.dismiss();
+                                        if(binding.cbMovementCheckAll.isChecked()){
+                                            binding.cbMovementCheckAll.setChecked(false);
+                                        }
+                                    },
+                                    throwable -> {
+                                        loading.dismiss();
+                                        if(binding.cbMovementCheckAll.isChecked()){
+                                            binding.cbMovementCheckAll.setChecked(false);
+                                        }
+                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                            )
+            );
+        } catch (Exception e){
+            Log.e("DeleteError", e.getMessage());
+        }
     }
 
 
