@@ -19,6 +19,7 @@ public class TabExpenseViewModel extends ViewModel {
     final AccountMovementRepository accountMovementRepository;
     final MutableLiveData<List<AccountMovementUI>> movements;
     public LiveData<List<AccountMovementUI>> getMovements(){ return this.movements; }
+    public boolean isLoadData = false;
 
     public TabExpenseViewModel() {
         this.accountMovementRepository = new AccountMovementRepository();

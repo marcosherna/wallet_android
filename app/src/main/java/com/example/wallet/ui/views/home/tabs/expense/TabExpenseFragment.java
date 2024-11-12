@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import com.example.wallet.ui.adapters.RVAccountMovementAdapter;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TabExpenseFragment extends Fragment {
@@ -26,7 +26,6 @@ public class TabExpenseFragment extends Fragment {
     FragmentTabExpenseBinding binding;
     TabExpenseViewModel tabExpenseViewModel;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    Disposable disposable;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -34,31 +33,48 @@ public class TabExpenseFragment extends Fragment {
         tabExpenseViewModel = new ViewModelProvider(this).get(TabExpenseViewModel.class);
         binding = FragmentTabExpenseBinding.inflate(inflater, container, false);
 
-        RVAccountMovementAdapter accountMovementAdapter = new RVAccountMovementAdapter();
-        binding.rvAllAccountExpense.setAdapter(accountMovementAdapter);
-
-        tabExpenseViewModel.getMovements().observe(getViewLifecycleOwner(), accountMovementAdapter::setItems);
-        binding.swpRefreshLayout.setOnRefreshListener(this::loadData);
-
-        this.loadData();
         return binding.getRoot();
     }
 
-    private void loadData() {
-        binding.swpRefreshLayout.setRefreshing(true);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        compositeDisposable.add(
-                tabExpenseViewModel.initialize()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                () -> binding.swpRefreshLayout.setRefreshing(false),
-                                throwable -> {
-                                    Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
-                                    binding.swpRefreshLayout.setRefreshing(false);
-                                }
-                        )
-        );
+        RVAccountMovementAdapter accountMovementAdapter = new RVAccountMovementAdapter();
+        binding.rvAllAccountExpense.setAdapter(accountMovementAdapter);
+
+        if(this.tabExpenseViewModel != null && !this.tabExpenseViewModel.isLoadData){
+            this.loadData();
+            this.tabExpenseViewModel.isLoadData = true;
+        }
+
+        if(this.tabExpenseViewModel != null){
+            tabExpenseViewModel.getMovements().observe(getViewLifecycleOwner(), accountMovementAdapter::setItems);
+        }
+
+        binding.swpRefreshLayout.setOnRefreshListener(this::loadData);
+
+    }
+
+    private void loadData() {
+        try {
+            binding.swpRefreshLayout.setRefreshing(true);
+
+            compositeDisposable.add(
+                    tabExpenseViewModel.initialize()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    () -> binding.swpRefreshLayout.setRefreshing(false),
+                                    throwable -> {
+                                        Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
+                                        binding.swpRefreshLayout.setRefreshing(false);
+                                    }
+                            )
+            );
+        } catch (Exception e){
+            Log.println(Log.ERROR, "loadDataError -> tabExpenseView", "");
+        }
     }
 
     @Override
