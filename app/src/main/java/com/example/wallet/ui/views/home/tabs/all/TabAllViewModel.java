@@ -18,6 +18,7 @@ public class TabAllViewModel extends ViewModel {
     final AccountMovementRepository accountMovementRepository;
     final MutableLiveData<List<AccountMovementUI>> movements;
     public LiveData<List<AccountMovementUI>> getMovements(){ return this.movements; }
+    public boolean isLoadData = false;
     public TabAllViewModel(){
         this.accountMovementRepository = new AccountMovementRepository();
         this.movements = new MutableLiveData<>(new ArrayList<>());
