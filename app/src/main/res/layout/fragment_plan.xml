@@ -13,12 +13,18 @@
         android:text="Nuevo"/>
 
 
-    <ExpandableListView
-        android:id="@+id/expandable_list_plan"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swpRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indicatorEnd="?android:attr/expandableListPreferredItemIndicatorRight"
-        android:dividerHeight="0.5dp"
-        />
+        android:layout_height="match_parent">
+
+        <ExpandableListView
+            android:id="@+id/expandable_list_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indicatorEnd="?android:attr/expandableListPreferredItemIndicatorRight"
+            android:dividerHeight="0.5dp"
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -8,28 +8,23 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.wallet.R;
-import com.example.wallet.domain.dtos.PlanSumaryDto;
+import com.example.wallet.ui.models.PlanSummaryUI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
     Context context;
 
-    public PlanExpandableListAdapter(Context context, List<String> titlesPlans, HashMap<String, List<PlanSumaryDto>> plansWithSumary) {
-        this.context = context;
-        this.titlesPlans = titlesPlans;
-        this.plansWithSumary = plansWithSumary;
-    }
-
     List<String> titlesPlans;
-    HashMap<String, List<PlanSumaryDto>> plansWithSumary;
+    HashMap<String, List<PlanSummaryUI>> plansWithSummary;
 
     public PlanExpandableListAdapter(Context context){
         this.titlesPlans = new ArrayList<>();
-        this.plansWithSumary = new HashMap<>();
+        this.plansWithSummary = new HashMap<>();
         this.context = context;
     }
 
@@ -37,10 +32,9 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
         this.titlesPlans = titlesPlans;
     }
 
-    public void setPlansWithSumary(HashMap<String, List<PlanSumaryDto>> plansWithSumary){
-        if(this.plansWithSumary != null){
-            this.plansWithSumary.clear();
-            this.plansWithSumary = plansWithSumary;
+    public void setPlansWithSummary(HashMap<String, List<PlanSummaryUI>> plansWithSummary){
+        if(this.plansWithSummary != null){
+            this.plansWithSummary = plansWithSummary;
             notifyDataSetChanged();
         }
     }
@@ -52,7 +46,7 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        List<PlanSumaryDto> children = this.plansWithSumary.get(this.titlesPlans.get(groupPosition));
+        List<PlanSummaryUI> children = this.plansWithSummary.get(this.titlesPlans.get(groupPosition));
         return children != null ? children.size() : 0;
     }
 
@@ -63,7 +57,7 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.plansWithSumary.get(this.titlesPlans.get(groupPosition))
+        return Objects.requireNonNull(this.plansWithSummary.get(this.titlesPlans.get(groupPosition)))
                 .get(childPosition);
     }
 
@@ -100,7 +94,7 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final PlanSumaryDto planSumaryDto = (PlanSumaryDto) getChild(groupPosition, childPosition);
+        final PlanSummaryUI planSummaryUI = (PlanSummaryUI) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater)this.context
@@ -115,16 +109,16 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
         TextView tvStatusPlan = convertView.findViewById(R.id.tv_status_plan);
         TextView tvExpendedPlan = convertView.findViewById(R.id.tv_expended_plan);
         TextView tvTotalPricePlan = convertView.findViewById(R.id.tv_total_price_plan);
-        TextView tvPlazoPlan = convertView.findViewById(R.id.tv_plazo_plan);
+        TextView tvTermPlan = convertView.findViewById(R.id.tv_plazo_plan);
         TextView tvPercentagePlan = convertView.findViewById(R.id.tv_percentage_plan);
 
-        tvPlanDescription.setText(planSumaryDto.getGroupDescription());
-        tvRevenuedPlan.setText(planSumaryDto.getTotalRevenue());
-        tvExpendedPlan.setText(planSumaryDto.getTotalExpended());
-        tvTotalPricePlan.setText(planSumaryDto.getTotal());
-        tvPlazoPlan.setText(planSumaryDto.getPlazo());
-        tvPercentagePlan.setText(planSumaryDto.getPercentage());
-        tvStatusPlan.setText(planSumaryDto.getStatus());
+        tvPlanDescription.setText(planSummaryUI.getGroupDescription());
+        tvRevenuedPlan.setText(planSummaryUI.getTotalRevenue());
+        tvExpendedPlan.setText(planSummaryUI.getTotalExpended());
+        tvTotalPricePlan.setText(planSummaryUI.getTotal());
+        tvTermPlan.setText(planSummaryUI.getTerm());
+        tvPercentagePlan.setText(planSummaryUI.getPercentage());
+        tvStatusPlan.setText(planSummaryUI.getStatus());
 
         return convertView;
     }

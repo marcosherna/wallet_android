@@ -10,7 +10,8 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="NUEVO PLAN"
+        android:text="NUEVO PLAN"
+        android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp" />

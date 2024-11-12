@@ -4,63 +4,69 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.wallet.domain.dtos.PlanSumaryDto;
 import com.example.wallet.domain.fake.repository.PlanRepository;
-import com.example.wallet.domain.models.AccountMovement;
 import com.example.wallet.domain.models.Plan;
+import com.example.wallet.ui.mappers.Mapper;
+import com.example.wallet.ui.models.PlanSummaryUI;
 import com.example.wallet.ui.models.PlanUI;
-import com.example.wallet.utils.DateFormatHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+
+import io.reactivex.rxjava3.core.Completable;
 
 public class PlanViewModel extends ViewModel {
     PlanRepository planRepository;
-    final MutableLiveData<HashMap<String, List<PlanSumaryDto>>> planstWithSumary;
-    public LiveData<HashMap<String, List<PlanSumaryDto>>> getPlansWithSumary(){ return this.planstWithSumary; }
+    final MutableLiveData<HashMap<String, List<PlanSummaryUI>>> plansWithSummaries;
+    public LiveData<HashMap<String, List<PlanSummaryUI>>> getPlansWithSummaries(){ return this.plansWithSummaries; }
 
-
+    public boolean isLoadData = false;
     public PlanViewModel() {
-        this.planstWithSumary = new MutableLiveData<>();
+        this.plansWithSummaries = new MutableLiveData<>(new HashMap<>());
         this.planRepository = new PlanRepository();
-        this.transformDataToDto();
     }
 
-    public boolean addPlan(PlanUI planUI){
-        // TODO: implement method
-        return false;
+
+    public Completable initialize(){
+        return Completable.create(emitter -> {
+            try {
+                Thread.sleep(1000);
+                this.loadPlans();
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
     }
 
-    public void transformDataToDto(){
+    public Completable addPlan(PlanUI planUI){
+        return Completable.create(emitter -> {
+            try {
+                // TODO: implemetar el metodo de agregar y actualizar
+                Thread.sleep(1000);
+
+                this.loadPlans();
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
+    }
+
+    private void loadPlans(){
+        // TODO: implementar -> traer los datos reales
         if (this.planRepository != null){
             ArrayList<Plan> plans = this.planRepository.getAll();
-            HashMap<String, List<PlanSumaryDto>> _plansWithSumary = new HashMap<>();
+            HashMap<String, List<PlanSummaryUI>> _plansWithSummary = new HashMap<>();
 
             plans.forEach(plan -> {
-                Float totalExpense = plan.sumAmountToTypeAccount(AccountMovement.Type.EXPENSE);
-                Float totalRevenue = plan.sumAmountToTypeAccount(AccountMovement.Type.REVENUE);
-
-
-                PlanSumaryDto planSumaryDto = new PlanSumaryDto("",
-                        plan.getId(),
-                        plan.getDescription(),
-                        totalExpense.toString(),
-                        totalRevenue.toString(),
-                        plan.getRate().toString()  + "%",
-                        plan.getCurrentAmount().toString(),
-                        DateFormatHelper.format(plan.getPaymentDeadline(), "EEEE d 'de' MMMM 'del' yyyy"),
-                        (plan.getStatus() == Plan.Status.IN_PROGRESS ?
-                                "En Proceso" : "Completo") );
-
-                _plansWithSumary.put(plan.getName(), Collections.singletonList(planSumaryDto));
+                PlanSummaryUI planSummaryUI = Mapper.PlanToSummaryUI(plan);
+                _plansWithSummary.put(plan.getName(), Collections.singletonList(planSummaryUI));
             });
 
-            this.planstWithSumary.setValue(_plansWithSumary);
+            this.plansWithSummaries.postValue(_plansWithSummary);
 
         }
     }

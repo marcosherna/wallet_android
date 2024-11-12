@@ -1,6 +1,6 @@
-package com.example.wallet.domain.dtos;
+package com.example.wallet.ui.models;
 
-public class PlanSumaryDto {
+public class PlanSummaryUI {
     private final String id;
     private final String idPlan;
     private final String groupDescription;
@@ -8,10 +8,10 @@ public class PlanSumaryDto {
     private final String totalRevenue;
     private final String percentage;
     private final String total;
-    private final String plazo;
+    private final String term;
     private final String status;
 
-    public PlanSumaryDto(String id, String idPlan, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String plazo, String status) {
+    public PlanSummaryUI(String id, String idPlan, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String term, String status) {
         this.id = id;
         this.idPlan = idPlan;
         this.groupDescription = groupDescription;
@@ -19,15 +19,20 @@ public class PlanSumaryDto {
         this.totalRevenue = totalRevenue;
         this.percentage = percentage;
         this.total = total;
-        this.plazo = plazo;
+        this.term = term;
         this.status = status;
     }
+
     public String getId() {
         return id;
     }
 
     public String getIdPlan() {
         return idPlan;
+    }
+
+    public String getGroupDescription() {
+        return groupDescription;
     }
 
     public String getTotalExpended() {
@@ -42,21 +47,15 @@ public class PlanSumaryDto {
         return percentage;
     }
 
-    public String getTotal(){
-        return this.total;
+    public String getTotal() {
+        return total;
     }
 
-    public String getGroupDescription(){
-        return this.groupDescription;
-    }
-    public String getPlazo() {
-        return plazo;
+    public String getTerm() {
+        return term;
     }
 
     public String getStatus() {
         return status;
     }
-
-
-
 }
