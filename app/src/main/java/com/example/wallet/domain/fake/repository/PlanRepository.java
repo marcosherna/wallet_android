@@ -23,6 +23,7 @@ public class PlanRepository extends BaseRepository<Plan>{
                             .filter(movement -> movement.getIdPlan().equals(plan.getId()))
                             .collect(Collectors.toCollection(ArrayList::new));
 
+                    plan.getMovements().clear();
                     movements.forEach(plan::addMovement);
 
                 }).findFirst().orElse(null);
@@ -36,6 +37,7 @@ public class PlanRepository extends BaseRepository<Plan>{
                             .filter(movement -> movement.getIdPlan().equals(plan.getId()))
                             .collect(Collectors.toCollection(ArrayList::new));
 
+                    plan.getMovements().clear();
                     movements.forEach(plan::addMovement);
                 })
                 .collect(Collectors.toCollection(ArrayList::new));

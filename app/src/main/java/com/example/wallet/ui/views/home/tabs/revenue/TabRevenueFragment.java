@@ -64,7 +64,7 @@ public class TabRevenueFragment extends Fragment {
             this.compositeDisposable.add(
                     tabRevenueViewModel.initialize()
                             .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
+                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     () -> this.binding.swpRefreshLayout.setRefreshing(false),
                                     throwable ->  {

@@ -11,23 +11,26 @@ import com.example.wallet.ui.models.PlanSummaryUI;
 import com.example.wallet.ui.models.PlanUI;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
 
 public class PlanViewModel extends ViewModel {
     PlanRepository planRepository;
-    final MutableLiveData<HashMap<String, List<PlanSummaryUI>>> plansWithSummaries;
-    public LiveData<HashMap<String, List<PlanSummaryUI>>> getPlansWithSummaries(){ return this.plansWithSummaries; }
+    final List<PlanUI> lstCache;
+    final MutableLiveData<List<PlanSummaryUI>> plansWithSummary;
+    public LiveData<List<PlanSummaryUI>> getPlansWithSummary(){ return this.plansWithSummary; }
+    final MutableLiveData<PlanUI> planSelected;
+    public LiveData<PlanUI> getPlanSelected(){ return this.planSelected; }
 
     public boolean isLoadData = false;
     public PlanViewModel() {
-        this.plansWithSummaries = new MutableLiveData<>(new HashMap<>());
         this.planRepository = new PlanRepository();
+        this.planSelected = new MutableLiveData<>();
+        this.lstCache = new ArrayList<>();
+        this.plansWithSummary = new MutableLiveData<>(new ArrayList<>());
     }
-
 
     public Completable initialize(){
         return Completable.create(emitter -> {
@@ -55,18 +58,57 @@ public class PlanViewModel extends ViewModel {
         });
     }
 
+    public Completable deletePlan(PlanSummaryUI plan){
+        return Completable.create(emitter -> {
+            try{
+                // TODO: implementar el metodo
+                Thread.sleep(1000);
+
+                this.loadPlans();
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
+    }
+
+    public Completable editPlan(PlanUI planUI){
+        return Completable.create(emitter -> {
+            try {
+                // TODO: implementar metodo
+                Thread.sleep(1000);
+
+                this.loadPlans();
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
+    }
+
+    public void setPlanSelected(PlanSummaryUI planSelected){
+        PlanUI select = this.lstCache.stream()
+                .filter(p -> p.getId().equals(planSelected.getIdPlan()))
+                .findFirst().orElse(null);
+
+        this.planSelected.setValue(select);
+    }
+
     private void loadPlans(){
         // TODO: implementar -> traer los datos reales
         if (this.planRepository != null){
             ArrayList<Plan> plans = this.planRepository.getAll();
-            HashMap<String, List<PlanSummaryUI>> _plansWithSummary = new HashMap<>();
 
-            plans.forEach(plan -> {
-                PlanSummaryUI planSummaryUI = Mapper.PlanToSummaryUI(plan);
-                _plansWithSummary.put(plan.getName(), Collections.singletonList(planSummaryUI));
-            });
+            // para no hacer mas consultas
+            this.lstCache.clear();
+            List<PlanUI> planUIS = plans.stream()
+                    .map(Mapper::PlanToUI).collect(Collectors.toList());
+            this.lstCache.addAll(planUIS);
 
-            this.plansWithSummaries.postValue(_plansWithSummary);
+            List<PlanSummaryUI> planSummaryUIS = plans.stream()
+                    .map(Mapper::PlanToSummaryUI).collect(Collectors.toList());
+
+            this.plansWithSummary.postValue(planSummaryUIS);
 
         }
     }

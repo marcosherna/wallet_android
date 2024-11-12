@@ -36,6 +36,7 @@ public class Mapper {
 
         return  new PlanSummaryUI("",
                 plan.getId(),
+                plan.getName(),
                 plan.getDescription(),
                 totalExpense.toString(),
                 totalRevenue.toString(),

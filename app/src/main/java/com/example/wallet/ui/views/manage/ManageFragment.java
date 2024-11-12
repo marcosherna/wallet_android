@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.wallet.databinding.FragmentManageBinding;
-import com.example.wallet.ui.adapters.BDSFormMovementDialog;
 import com.example.wallet.ui.adapters.LoadingDialogFragment;
 import com.example.wallet.ui.adapters.RVAccountMovementWithCheck;
 import com.example.wallet.ui.models.AccountMovementUI;

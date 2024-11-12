@@ -1,4 +1,4 @@
-package com.example.wallet.ui.adapters;
+package com.example.wallet.ui.views.manage;
 
 
 import android.os.Bundle;

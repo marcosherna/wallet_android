@@ -3,6 +3,7 @@ package com.example.wallet.ui.models;
 public class PlanSummaryUI {
     private final String id;
     private final String idPlan;
+    private final String namePlan;
     private final String groupDescription;
     private final String totalExpended;
     private final String totalRevenue;
@@ -11,9 +12,10 @@ public class PlanSummaryUI {
     private final String term;
     private final String status;
 
-    public PlanSummaryUI(String id, String idPlan, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String term, String status) {
+    public PlanSummaryUI(String id, String idPlan, String namePlan, String groupDescription, String totalExpended, String totalRevenue, String percentage, String total, String term, String status) {
         this.id = id;
         this.idPlan = idPlan;
+        this.namePlan = namePlan;
         this.groupDescription = groupDescription;
         this.totalExpended = totalExpended;
         this.totalRevenue = totalRevenue;
@@ -57,5 +59,9 @@ public class PlanSummaryUI {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getNamePlan() {
+        return namePlan;
     }
 }

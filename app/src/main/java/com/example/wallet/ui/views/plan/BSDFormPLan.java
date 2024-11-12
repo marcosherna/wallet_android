@@ -1,6 +1,7 @@
-package com.example.wallet.ui.adapters;
+package com.example.wallet.ui.views.plan;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,13 @@ public class BSDFormPLan extends BottomSheetDialogFragment {
         this.title = title;
     }
 
+    public void setPlanSelected(PlanUI plan){
+        this.plan = plan;
+        if (binding != null) {
+            this.updateViewWithPlanData();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,23 +54,42 @@ public class BSDFormPLan extends BottomSheetDialogFragment {
         this.binding.tvTitle.setText(title);
         this.binding.edtTerm.setOnClickListener(__ -> showDatePickerDialog());
 
+        this.updateViewWithPlanData();
+
         this.binding.btnSaveNewPlan.setOnClickListener(v -> {
-            this.plan = this.plan != null ? this.plan : new PlanUI();
+            PlanUI newPlan =  new PlanUI();
             String namePlan =  this.binding.edtName.getText().toString();
             String amountPlan = this.binding.edtAmount.getText().toString();
             String termPlan =  this.binding.edtTerm.getText().toString();
             String description = this.binding.edtDescription.getText().toString();
 
-            this.plan.setName(namePlan);
-            this.plan.setTargetAmount(amountPlan);
-            this.plan.setPaymentDeadline(termPlan);
-            this.plan.setDescription(description);
+            newPlan.setName(namePlan);
+            newPlan.setTargetAmount(amountPlan);
+            newPlan.setPaymentDeadline(termPlan);
+            newPlan.setDescription(description);
 
             if (listener != null) {
-                listener.onSaveClicked(this.plan);
+                listener.onSaveClicked(newPlan);
             }
 
         });
+    }
+
+    private void updateViewWithPlanData() {
+        if (plan != null) {
+            binding.edtName.setText(plan.getName());
+            binding.edtAmount.setText(plan.getTargetAmount());
+            binding.edtTerm.setText(plan.getPaymentDeadline());
+            binding.edtDescription.setText(plan.getDescription());
+        }
+    }
+
+    public void clearData() {
+        binding.edtName.setText("");
+        binding.edtAmount.setText("");
+        binding.edtTerm.setText("");
+        binding.edtDescription.setText("");
+        this.plan = null;
     }
 
     private void showDatePickerDialog() {
@@ -77,5 +104,12 @@ public class BSDFormPLan extends BottomSheetDialogFragment {
         }, year, month, day);
 
         datePickerDialog.show();
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.binding = null;
     }
 }

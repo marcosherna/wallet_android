@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.wallet.R;
@@ -18,14 +19,18 @@ import java.util.Objects;
 public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
 
     Context context;
-
     List<String> titlesPlans;
     HashMap<String, List<PlanSummaryUI>> plansWithSummary;
+    boolean hasActions = false;
 
-    public PlanExpandableListAdapter(Context context){
+    OnClickDialog listenerPositiveClick;
+    OnClickDialog listenerNegativeClick;
+
+    public PlanExpandableListAdapter(Context context, boolean hasActions){
         this.titlesPlans = new ArrayList<>();
         this.plansWithSummary = new HashMap<>();
         this.context = context;
+        this.hasActions = hasActions;
     }
 
     public void setTitlesPlans(List<String> titlesPlans){
@@ -37,6 +42,18 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
             this.plansWithSummary = plansWithSummary;
             notifyDataSetChanged();
         }
+    }
+
+    public void setOnListenerPositiveClick(OnClickDialog listener){
+        this.listenerPositiveClick = listener;
+    }
+
+    public void setOnListenerNegativeClick(OnClickDialog listener){
+        this.listenerNegativeClick = listener;
+    }
+
+    public interface OnClickDialog{
+        void OnClick(PlanSummaryUI planSummaryUI);
     }
 
     @Override
@@ -104,6 +121,9 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
                     .inflate(R.layout.expandable_list_item, parent, false);
         }
 
+        int visibility = hasActions ? View.VISIBLE: View.GONE;
+        convertView.findViewById(R.id.actionsLayout).setVisibility(visibility);
+
         TextView tvPlanDescription = convertView.findViewById(R.id.tv_planDescription);
         TextView tvRevenuedPlan = convertView.findViewById(R.id.tv_revenued_plan);
         TextView tvStatusPlan = convertView.findViewById(R.id.tv_status_plan);
@@ -111,6 +131,10 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
         TextView tvTotalPricePlan = convertView.findViewById(R.id.tv_total_price_plan);
         TextView tvTermPlan = convertView.findViewById(R.id.tv_plazo_plan);
         TextView tvPercentagePlan = convertView.findViewById(R.id.tv_percentage_plan);
+
+        // actions buttons
+        ImageButton negativeButton = convertView.findViewById(R.id.btnDelete);
+        ImageButton positiveButton = convertView.findViewById(R.id.btnEdit);
 
         tvPlanDescription.setText(planSummaryUI.getGroupDescription());
         tvRevenuedPlan.setText(planSummaryUI.getTotalRevenue());
@@ -120,8 +144,22 @@ public class PlanExpandableListAdapter extends BaseExpandableListAdapter {
         tvPercentagePlan.setText(planSummaryUI.getPercentage());
         tvStatusPlan.setText(planSummaryUI.getStatus());
 
+
+        positiveButton.setOnClickListener( __ -> {
+            if (this.listenerPositiveClick != null){
+                this.listenerPositiveClick.OnClick(planSummaryUI);
+            }
+        });
+
+        negativeButton.setOnClickListener( __ -> {
+            if (this.listenerNegativeClick != null){
+                this.listenerNegativeClick.OnClick(planSummaryUI);
+            }
+        });
+
         return convertView;
     }
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
