@@ -19,6 +19,7 @@ public class TabRevenueViewModel extends ViewModel {
     final AccountMovementRepository accountMovementRepository;
     final MutableLiveData<List<AccountMovementUI>> movements;
     public LiveData<List<AccountMovementUI>> getMovements(){ return this.movements; }
+    public boolean isLoadData = false;
     public TabRevenueViewModel(){
         this.accountMovementRepository = new AccountMovementRepository();
         this.movements = new MutableLiveData<>(new ArrayList<>());
