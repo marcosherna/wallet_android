@@ -30,6 +30,7 @@ public class ManageViewModel extends ViewModel {
     public LiveData<List<PlanUI>> getPlans() { return this.plans; }
     final MutableLiveData<List<AccountMovementUI>> movements;
     public LiveData<List<AccountMovementUI>> getMovements() { return this.movements; }
+    public boolean isLoadData = false;
     public ManageViewModel(){
         this.planRepository = new PlanRepository();
         this.plans = new MutableLiveData<>(new ArrayList<>());
@@ -119,7 +120,7 @@ public class ManageViewModel extends ViewModel {
                         Date date2 = sdf.parse(m2.getDate());
                         return date2.compareTo(date1);
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        //e.printStackTrace();
                         return 0;
                     }
                 })
