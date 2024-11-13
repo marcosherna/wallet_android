@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.views.home.tabs.plan.TabPlanFragment">
 
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swpRefreshPlans"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:text="Hello" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ExpandableListView
+            android:id="@+id/rv_all_summary_plans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indicatorEnd="?android:attr/expandableListPreferredItemIndicatorRight"
+            android:dividerHeight="0.5dp"
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
