@@ -43,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.navigation_login) {
+
+            if (destination.getId() == R.id.navigation_login ||
+                    destination.getId() == R.id.navigation_register) {
+
                 navView.setVisibility(View.GONE);
                 getSupportActionBar().hide();
             } else {

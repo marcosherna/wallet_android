@@ -94,6 +94,12 @@ public class LoginFragment extends Fragment {
                 this.navigateHome();
             }
         });
+
+        this.binding.txlCreateNewUser.setOnClickListener(__ -> this.handlerNavigateCreateUserClick());
+    }
+
+    private void handlerNavigateCreateUserClick(){
+        navController.navigate(R.id.navigation_to_register, null);
     }
 
     private void handlerSessionClick() {
@@ -126,4 +132,10 @@ public class LoginFragment extends Fragment {
         navController.navigate(R.id.navigation_home, null, navOptions);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        this.binding = null;
+        this.disposable.clear();
+    }
 }
