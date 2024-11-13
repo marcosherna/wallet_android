@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="32dp"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round"
+        android:contentDescription="logotipo"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INICIO DE SESSION"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"  />
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/rounded_edittext"
+        android:hint="example_user@gmail.com"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingHorizontal="6dp"
+        android:ems="10"
+        android:layout_marginBottom="16dp"
+        tools:ignore="TextFields" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"  />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="password"
+        android:background="@drawable/rounded_edittext"
+        android:hint="Contraseña"
+        android:minHeight="48dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingHorizontal="6dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/txl_password_forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Olvidaste tu contraseña?"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btn_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continuar" />
+
+    <TextView
+        android:id="@+id/txl_create_new_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿No posees una cuenta?"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

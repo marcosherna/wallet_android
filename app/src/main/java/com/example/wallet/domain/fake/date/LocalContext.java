@@ -12,6 +12,7 @@ public class LocalContext {
     public static ArrayList<Entity> context = new ArrayList<>();
 
     public static void setup(){
+        context.clear();
         Plan plan1 =  new Plan("1", "test", "Este es un plan para test", new Date(), 800f);
 
         AccountMovement movement1 = new AccountMovement(AccountMovement.Type.REVENUE, plan1.getId(), 100f);
