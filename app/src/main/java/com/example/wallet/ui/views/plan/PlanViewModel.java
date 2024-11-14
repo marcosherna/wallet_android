@@ -10,13 +10,17 @@ import com.example.wallet.ui.mappers.Mapper;
 import com.example.wallet.ui.models.PlanSummaryUI;
 import com.example.wallet.ui.models.PlanUI;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class PlanViewModel extends ViewModel {
+    final CompositeDisposable disposable = new CompositeDisposable();
+    final
     PlanRepository planRepository;
     final List<PlanUI> lstCache;
     final MutableLiveData<List<PlanSummaryUI>> plansWithSummary;

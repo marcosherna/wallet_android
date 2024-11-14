@@ -15,6 +15,8 @@
         <!-- Expense color. -->
         <item name="dangerColor">@color/expense_color_light</item>
         <item name="contact_color">@color/contact_color_light</item>
+        <item name="contrast_color_img">#2E2C2C</item>
+
     </style>
 
 </resources>

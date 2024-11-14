@@ -53,6 +53,18 @@ public class ManageViewModel extends ViewModel {
             }
         });
     }
+    public Completable updateMovement(AccountMovementUI movementUI){
+        return Completable.create( emitter -> {
+            try {
+                Thread.sleep(1000);
+
+                this.initializeMovement();
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
+    }
     private void initializePlan(){
         // TODO: Reemplazar con el origen de datos online
         List<PlanUI> plans = this.planRepository.getAll().stream()

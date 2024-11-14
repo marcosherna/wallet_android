@@ -21,6 +21,7 @@ import com.example.wallet.ui.adapters.LoadingDialogFragment;
 import com.example.wallet.ui.adapters.RVAccountMovementWithCheck;
 import com.example.wallet.ui.models.AccountMovementUI;
 import com.example.wallet.ui.models.TypeAccountMovement;
+import com.example.wallet.utils.LogErrorHelper;
 
 import java.util.List;
 import java.util.Objects;
@@ -60,6 +61,7 @@ public class ManageFragment extends Fragment {
 
         rvAccountMovementWithCheckAdapter = new RVAccountMovementWithCheck();
         binding.rvAddAccountMovement.setAdapter(rvAccountMovementWithCheckAdapter);
+        rvAccountMovementWithCheckAdapter.setOnEditableClickListener(this::handlerEditableClick);
 
         binding.swpRefreshLayout.setOnRefreshListener(this::loadData);
 
@@ -83,10 +85,50 @@ public class ManageFragment extends Fragment {
         });
 
         if(this.manageViewModel != null){
-
             manageViewModel.getMovements()
                     .observe(getViewLifecycleOwner(),rvAccountMovementWithCheckAdapter::addMovement);
-            manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> dialog.setplans(planUIS));
+            manageViewModel.getPlans().observe(getViewLifecycleOwner(), planUIS -> dialog.setPlans(planUIS));
+        }
+    }
+    private void handlerEditableClick(AccountMovementUI movementUI){
+        try {
+            BDSFormMovementDialog formEdit = new BDSFormMovementDialog();
+
+
+            formEdit.setMovementUI(movementUI);
+            formEdit.setTitle("Editar Movimiento");
+
+            formEdit.setPlans(this.manageViewModel.getPlans().getValue());
+            formEdit.show(getParentFragmentManager(), "BDSFormEditMovementDialog");
+            formEdit.setListener(movementUI1 -> {
+                
+                if(!movementUI1.getAmount().isEmpty()){
+                    LoadingDialogFragment loading = new LoadingDialogFragment();
+                    loading.show(requireActivity().getSupportFragmentManager(), "loadingDialog");
+                    disposable.add(
+                            manageViewModel.updateMovement(movementUI1)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            () -> {
+                                                loading.dismiss();
+                                                formEdit.clearForm();
+                                                formEdit.dismiss();
+                                                Toast.makeText(getContext(), "Actualizado", Toast.LENGTH_SHORT).show();
+                                                formEdit.onDestroyView();
+                                            },
+                                            throwable -> {
+                                                loading.dismiss();
+                                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                            }
+                                    )
+                    );
+                } else {
+                    Toast.makeText(getContext(), "Digita un monto", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e){
+            LogErrorHelper.print(e);
         }
     }
 

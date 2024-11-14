@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.wallet.databinding.BottomSheetNewMovementBinding;
 import com.example.wallet.ui.models.AccountMovementUI;
@@ -21,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -33,18 +35,27 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
     BottomSheetNewMovementBinding binding;
     List<PlanUI> plans;
     PlanUI planSelected;
+    String title;
     OnclickListener listener;
     TypeAccountMovement typeAccountMovement;
+
     public BDSFormMovementDialog() {
         this.plans = new ArrayList<>();
+        this.movementUI = null;
     }
 
     public void setListener(OnclickListener listener) {
         this.listener = listener;
     }
 
-    public void setplans(List<PlanUI> plans) {
+    public void setPlans(List<PlanUI> plans) {
         this.plans = plans;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setMovementUI(AccountMovementUI movementUI) {
+        this.movementUI = movementUI;
     }
 
     @Nullable
@@ -58,26 +69,23 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if(!Objects.isNull(this.title) && !this.title.isEmpty()){
+            this.binding.tvTitle.setText(this.title);
+        }
 
-        this.binding.txtTypeMovement.setText("Ingreso");
-        this.binding.cbTypeMovement.setChecked(true);
-        
         List<String> plansNames = this.plans.stream()
                 .map(PlanUI::getName).collect(Collectors.toList());
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(),
                 com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
                 plansNames);
 
         adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
-
         this.binding.spinnerPlans.setAdapter(adapter);
 
         this.binding.spinnerPlans.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //String selectedPlan = parent.getItemAtPosition(position).toString();
                 planSelected = plans.get(position);
             }
 
@@ -86,18 +94,12 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
             }
         });
 
-
-        this.binding.cbTypeMovement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                binding.txtTypeMovement.setText( isChecked ? "Ingreso" : "Egreso");
-
-            }
-        });
-
+        this.binding.cbTypeMovement.setOnCheckedChangeListener((buttonView, isChecked) ->
+                binding.txtTypeMovement.setText(isChecked ? "Ingreso" : "Egreso")
+        );
 
         this.binding.btnSaveMovement.setOnClickListener(__ -> {
-            if(listener != null){
+            if (listener != null) {
                 String idPlan = planSelected != null ? planSelected.getId() : "";
                 String amount = this.binding.edtAmount.getText().toString();
                 typeAccountMovement = binding.cbTypeMovement.isChecked() ? TypeAccountMovement.REVENUE : TypeAccountMovement.EXPENSE;
@@ -109,6 +111,35 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
 
     public void clearForm(){
         binding.edtAmount.setText("");
+    }
+
+
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (this.movementUI != null) {
+
+            this.binding.edtAmount.setText(this.movementUI.getAmount());
+
+            this.binding.cbTypeMovement.setChecked(this.movementUI.getTypeAccountMovement() == TypeAccountMovement.REVENUE);
+            this.binding.txtTypeMovement.setText(this.movementUI.getTypeAccountMovement() == TypeAccountMovement.REVENUE ? "Ingreso" : "Egreso");
+
+            String planId = this.movementUI.getIdPlan();
+            int position = -1;
+            for (int i = 0; i < plans.size(); i++) {
+                if (plans.get(i).getId().equals(planId)) {
+                    position = i;
+                    break;
+                }
+            }
+            if (position != -1) {
+                this.binding.spinnerPlans.setSelection(position);
+                planSelected = plans.get(position);
+            }
+            this.movementUI = null;
+        }
     }
 
     @Override

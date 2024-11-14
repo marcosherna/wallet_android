@@ -17,21 +17,29 @@ import java.util.List;
 public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMovementWithCheck.AccountMovementWithCheckHolder> {
 
     List<AccountMovementUI> movements;
+    OnListenerEditableClick listener;
 
-    public RVAccountMovementWithCheck(){
+    public RVAccountMovementWithCheck() {
         this.movements = new ArrayList<>();
     }
 
-    public void addMovement(List<AccountMovementUI> movements){
+    public void addMovement(List<AccountMovementUI> movements) {
         if (movements != null) {
-//            this.movements.clear();
             this.movements = movements;
             notifyDataSetChanged();
         }
     }
 
-    public List<AccountMovementUI> getItems(){
+    public List<AccountMovementUI> getItems() {
         return this.movements;
+    }
+
+    public void setOnEditableClickListener(OnListenerEditableClick listener) {
+        this.listener = listener;
+    }
+
+    public interface OnListenerEditableClick {
+        void OnClick(AccountMovementUI movementUI);
     }
 
     @NonNull
@@ -40,7 +48,7 @@ public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_account_movement_check_selector, parent, false);
 
-        return new AccountMovementWithCheckHolder(view);
+        return new AccountMovementWithCheckHolder(view, listener);
     }
 
     @Override
@@ -54,27 +62,36 @@ public class RVAccountMovementWithCheck extends RecyclerView.Adapter<RVAccountMo
         return this.movements.size();
     }
 
-    public void checkAll(boolean isCheck){
-        this.movements.forEach( movement -> movement.setCheck(isCheck));
+    public void checkAll(boolean isCheck) {
+        this.movements.forEach(movement -> movement.setCheck(isCheck));
         notifyItemRangeChanged(0, movements.size());
     }
 
-    public static class  AccountMovementWithCheckHolder extends RecyclerView.ViewHolder {
+    public static class AccountMovementWithCheckHolder extends RecyclerView.ViewHolder {
         ItemAccountMovementCheckSelectorBinding binding;
-        public AccountMovementWithCheckHolder(@NonNull View itemView) {
+        OnListenerEditableClick listener;
+
+        public AccountMovementWithCheckHolder(@NonNull View itemView, OnListenerEditableClick listener) {
             super(itemView);
             this.binding = ItemAccountMovementCheckSelectorBinding.bind(itemView);
-
+            this.listener = listener;
         }
 
-        public void render(AccountMovementUI movement){
+        public void render(AccountMovementUI movement) {
             this.binding.cbMovement.setChecked(movement.isCheck());
             this.binding.tvAmount.setText(movement.getAmount());
             this.binding.tvDate.setText(movement.getDate());
             this.binding.tvIdPlan.setText(movement.getIdPlan());
 
-            this.binding.cbMovement.setOnCheckedChangeListener(((buttonView, isChecked) -> movement.setCheck(isChecked)));
+            this.binding.cbMovement.setOnCheckedChangeListener((buttonView, isChecked) -> movement.setCheck(isChecked));
+            this.binding.btnEditable.setOnClickListener(__ -> handlerEditableClick(movement));
+        }
+
+        private void handlerEditableClick(AccountMovementUI movement) {
+            if (listener != null) {
+                listener.OnClick(movement);
+            }
         }
     }
-
 }
+

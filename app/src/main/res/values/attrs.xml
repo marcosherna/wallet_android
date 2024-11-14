@@ -2,4 +2,5 @@
 <resources>
     <attr name="dangerColor" format="color" />
     <attr name="contact_color" format="color" />
+    <attr name="contrast_color_img" format="color" />
 </resources>
