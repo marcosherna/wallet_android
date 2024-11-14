@@ -2,11 +2,15 @@ package com.example.wallet;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.wallet.domain.fake.date.LocalContext;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -15,6 +19,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.wallet.databinding.ActivityMainBinding;
+
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,25 +50,44 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            try {
+                if (destination.getId() == R.id.navigation_login ||
+                        destination.getId() == R.id.navigation_register ||
+                        destination.getId() == R.id.navigation_profile) {
 
-            if (destination.getId() == R.id.navigation_login ||
-                    destination.getId() == R.id.navigation_register) {
+                    navView.setVisibility(View.GONE);
+                    Objects.requireNonNull(getSupportActionBar()).hide();
+                } else {
+                    navView.setVisibility(View.VISIBLE);
+                    Objects.requireNonNull(getSupportActionBar()).show();
+                }
+            } catch (Exception e){
 
-                navView.setVisibility(View.GONE);
-                getSupportActionBar().hide();
-            } else {
-                navView.setVisibility(View.VISIBLE);
-                getSupportActionBar().show();
+                Log.println(Log.ERROR, "Navigation",
+                        "Error: " + e.getClass().getName() +" "+e.getMessage());
             }
         });
 
-        if (!isLoggedIn) {
+        if (isLoggedIn) { // !isLoggedIn
             NavOptions navOptions = new NavOptions.Builder()
                     .setPopUpTo(R.id.mobile_navigation, true)
                     .build();
 
             navController.navigate(R.id.navigation_login, null, navOptions);
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_session_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        navController.navigate(R.id.navigation_profile);
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -69,5 +95,4 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
-
 }

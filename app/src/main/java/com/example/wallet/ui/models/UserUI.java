@@ -7,6 +7,14 @@ public class UserUI {
     private String password;
     private String confirmPassword;
 
+    public UserUI() {
+        this.name = "";
+        this.lastName = "";
+        this.email = "";
+        this.password = "";
+        this.confirmPassword = "";
+    }
+
     public UserUI(String name, String lasName, String email, String password, String confirmPassword) {
         this.name = name;
         this.lastName = lasName;
@@ -56,6 +64,13 @@ public class UserUI {
     }
     public boolean isPasswordEquals(){
         return this.password.equals(this.confirmPassword);
+    }
+
+    public boolean isValidUpdate(){
+        return !this.name.isEmpty() &&
+                !this.lastName.isEmpty() &&
+                !this.email.isEmpty() &&
+                !this.password.isEmpty();
     }
     public boolean isValid() {
         return !this.name.isEmpty() &&

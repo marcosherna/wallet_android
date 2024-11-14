@@ -11,8 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-    </style>
 
+        <!-- Expense color. -->
+        <item name="dangerColor">@color/expense_color_light</item>
+        <item name="contact_color">@color/contact_color_light</item>
+    </style>
 
 </resources>

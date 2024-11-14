@@ -46,9 +46,7 @@ public class RegisterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-        this.binding.txlLogin.setOnClickListener(__ -> {
-            navController.popBackStack();
-        });
+        this.binding.txlLogin.setOnClickListener(__ -> navController.popBackStack());
 
         this.binding.btnRegister.setOnClickListener(__ -> this.handlerRegisterClick());
 
@@ -100,7 +98,7 @@ public class RegisterFragment extends Fragment {
 
     private void navigateHome(){
         NavOptions navOptions = new NavOptions.Builder()
-                .setPopUpTo(R.id.mobile_navigation, true)  // Cambia "mobile_navigation" por el ID de tu gráfico raíz
+                .setPopUpTo(R.id.mobile_navigation, true)
                 .build();
 
         navController.navigate(R.id.navigation_home, null, navOptions);

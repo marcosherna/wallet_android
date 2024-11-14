@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_me"
+        android:icon="@drawable/baseline_delete_24"
+        android:title="Perfil" />
+
+    <item
+        android:id="@+id/action_contact"
+        android:icon="@drawable/baseline_edit_square_24"
+        android:title="Contáctanos"  />
+
+    <item
+        android:id="@+id/action_logUp"
+        android:icon="@drawable/baseline_edit_square_24"
+        android:title="Cerrar session"  />
+</menu>

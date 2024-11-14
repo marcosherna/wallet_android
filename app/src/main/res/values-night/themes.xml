@@ -12,7 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- Expense color. -->
+        <item name="dangerColor">@color/expense_color_dark</item>
+        <item name="contact_color">@color/contact_color_dark</item>
     </style>
-
-
 </resources>
