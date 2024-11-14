@@ -30,11 +30,23 @@
     <string name="txt_confirmPassword">Confirmar Contraseña</string>
     <string name="txt_btn_save">Guardar</string>
     <string name="txt_btn_cancel">Cancelar</string>
+    <string name="txt_btn_send">Enviar</string>
 
     <string name="txt_btn_contact">Contáctanos</string>
     <string name="txt_contact_description">Si, tienes problemas, dudas o comentarios</string>
 
     <string name="txt_profile">Perfil</string>
+
+    <!--FORMS CONTACT ME-->
+    <string name="txt_who_contact">¿Quien redacta?</string>
+    <string name="txt_which_contact">¿Cual es el motivo?</string>
+    <string name="txt_detail_contact">Brinde detalles</string>
+    <string name="txt_info_description_contact">Comprobante (si aplica por un problema)</string>
+    <string name="txt_btn_select_file">Elegir archivo</string>
+    <!-- placeholder-->
+    <string name="txt_placeholder_who_contact">Yo</string>
+    <string name="txt_placeholder_which_contact">Motivo</string>
+    <string name="txt_placeholder_detail_contact">Detalle su comentario, duda o problema</string>
 
 
 </resources>
