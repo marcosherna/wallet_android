@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (isLoggedIn) { // !isLoggedIn
+        if (!isLoggedIn) { // !isLoggedIn
             NavOptions navOptions = new NavOptions.Builder()
                     .setPopUpTo(R.id.mobile_navigation, true)
                     .build();
