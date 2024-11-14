@@ -19,6 +19,7 @@
 
     <string name="txt_loading">Cargando...</string>
     <string name="txt_btn_logOut">Cerrar sesion</string>
+    <string name="txt_menu_settings">Configuración</string>
 
     <!--FORMS -->
     <string name="txt_names">Nombres</string>

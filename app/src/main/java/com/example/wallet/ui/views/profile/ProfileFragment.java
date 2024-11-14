@@ -75,6 +75,34 @@ public class ProfileFragment extends Fragment {
 
         this.binding.btnCancel.setOnClickListener(__ -> this.closeView());
         this.binding.btnSave.setOnClickListener(__ -> this.saveUser());
+
+        this.binding.btnLogOut.setOnClickListener(__ -> this.handlerLogOut());
+    }
+    private void handlerLogOut(){
+        LoadingDialogFragment loading = new LoadingDialogFragment();
+        loading.show(requireActivity().getSupportFragmentManager(), "loadingLogOut");
+         this.disposable.add(
+                 this.profileViewModel.logOut()
+                         .subscribeOn(Schedulers.io())
+                         .observeOn(AndroidSchedulers.mainThread())
+                         .subscribe(
+                                 () -> {
+                                     loading.dismiss();
+                                     this.exitApp();
+                                 },
+                                 throwable -> {
+                                     loading.dismiss();
+                                     LogErrorHelper.print(throwable);
+                                 }
+                         )
+         );
+    }
+    private void exitApp(){
+        try {
+            requireActivity().finish();
+        } catch (Exception e) {
+            LogErrorHelper.print(e);
+        }
     }
 
     private void saveUser(){
@@ -124,5 +152,12 @@ public class ProfileFragment extends Fragment {
 
     private void closeView(){
         this.navController.popBackStack();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+        disposable.clear();
     }
 }

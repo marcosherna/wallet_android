@@ -52,6 +52,18 @@ public class ProfileViewModel extends ViewModel {
         });
     }
 
+    public Completable logOut(){
+        return Completable.create(emitter -> {
+            try {
+                Thread.sleep(1000);
+                // borra el usuario en sesion
+                emitter.onComplete();
+            } catch (Exception e){
+                emitter.onError(e);
+            }
+        });
+    }
+
 
 
 
