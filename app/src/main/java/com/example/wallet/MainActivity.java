@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (destination.getId() == R.id.navigation_login ||
                         destination.getId() == R.id.navigation_register ||
-                        destination.getId() == R.id.navigation_profile) {
+                        destination.getId() == R.id.navigation_profile ||
+                        destination.getId() == R.id.navigation_contact_me) {
 
                     navView.setVisibility(View.GONE);
                     Objects.requireNonNull(getSupportActionBar()).hide();

@@ -54,4 +54,10 @@
         android:name="com.example.wallet.ui.views.profile.ProfileFragment"
         android:label="@string/txt_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_contact_me"
+        android:name="com.example.wallet.ui.views.contactMe.ContactMeFragment"
+        android:label="@string/txt_btn_contact"
+        tools:layout="@layout/fragment_contact_me" />
 </navigation>

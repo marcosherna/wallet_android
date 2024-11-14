@@ -77,6 +77,10 @@ public class ProfileFragment extends Fragment {
         this.binding.btnSave.setOnClickListener(__ -> this.saveUser());
 
         this.binding.btnLogOut.setOnClickListener(__ -> this.handlerLogOut());
+        this.binding.btnContactMe.setOnClickListener(__ -> this.handlerNavigateContactMe());
+    }
+    private void handlerNavigateContactMe(){
+        navController.navigate(R.id.navigation_contact_me);
     }
     private void handlerLogOut(){
         LoadingDialogFragment loading = new LoadingDialogFragment();
