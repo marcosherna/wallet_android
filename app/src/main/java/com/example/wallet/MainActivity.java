@@ -22,6 +22,8 @@ import com.example.wallet.databinding.ActivityMainBinding;
 
 import java.util.Objects;
 
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         LocalContext.setup();
+
+        RxJavaPlugins.setErrorHandler(e -> {
+            Log.e("RxJavaError", "Unhandled exception", e);
+        });
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
