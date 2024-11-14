@@ -8,6 +8,7 @@ public class ContactUI {
     private String whichReason;
     private String detail;
     private String date;
+    private String imageBase64;
 
     public ContactUI(){
         this.whoWrite = "";
@@ -20,6 +21,7 @@ public class ContactUI {
         this.whichReason = whichReason;
         this.detail = detail;
         this.date = date;
+        this.imageBase64 = "";
     }
 
     public boolean isValid(){
@@ -59,5 +61,21 @@ public class ContactUI {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
+    public void clear(){
+        this.whoWrite = "";
+        this.whichReason = "";
+        this.detail = "";
+        this.date = "";
+        this.imageBase64 = "";
     }
 }
