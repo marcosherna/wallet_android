@@ -27,7 +27,7 @@
         android:layout_marginBottom="8dp"  />
 
     <EditText
-        android:id="@+id/edt_name"
+        android:id="@+id/edt_who"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -47,7 +47,7 @@
         android:layout_marginBottom="8dp"  />
 
     <EditText
-        android:id="@+id/edt_lastName"
+        android:id="@+id/edt_which"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -68,7 +68,7 @@
         android:layout_marginBottom="8dp"  />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edt_detail"
         android:layout_width="match_parent"
         android:layout_height="119dp"
         android:ems="10"
@@ -96,6 +96,7 @@
         android:layout_marginBottom="16dp">
 
         <Button
+            android:id="@+id/btn_file_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_btn_select_file"
@@ -104,7 +105,7 @@
             android:layout_marginEnd="8dp"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txt_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="archivo.jpg"
