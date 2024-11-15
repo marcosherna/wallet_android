@@ -16,4 +16,5 @@
 
     <color name="contact_color_light">#2196F3</color>
     <color name="contact_color_dark">#65ABE3</color>
+    <color name="input_color_dark">#D9DBFF</color>
 </resources>
