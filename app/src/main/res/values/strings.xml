@@ -12,6 +12,7 @@
     <string name="txt_plan">Planes</string>
     
     <string name="txt_amount">Monto</string>
+    <string name="txt_placeholder_amount">00.00</string>
     <string name="txt_date_entry">Fecha</string>
     <string name="txt_plan_id">Id Plan</string>
     <string name="txt_new_button">Nuevo</string>
@@ -45,6 +46,7 @@
     <string name="txt_profile">Perfil</string>
     <string name="txt_login">Inicio de sesion</string>
     <string name="txt_register">Registrarse</string>
+    <string name="txt_title_form_movement">Nuevo Movimiento</string>
 
     <string name="txt_logo_description">logo session</string>
 

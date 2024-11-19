@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.wallet.R;
 import com.example.wallet.databinding.FragmentManageBinding;
 import com.example.wallet.ui.adapters.LoadingDialogFragment;
 import com.example.wallet.ui.adapters.RVAccountMovementWithCheck;
@@ -58,6 +60,11 @@ public class ManageFragment extends Fragment {
             this.loadData();
             this.manageViewModel.isLoadData = true;
         }
+
+        ArrayAdapter<CharSequence> filterAdapter = ArrayAdapter.createFromResource(
+                requireContext(), R.array.movements_options, R.layout.spinner_item);
+        filterAdapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
+        binding.spFilter.setAdapter(filterAdapter);
 
         rvAccountMovementWithCheckAdapter = new RVAccountMovementWithCheck();
         binding.rvAddAccountMovement.setAdapter(rvAccountMovementWithCheckAdapter);

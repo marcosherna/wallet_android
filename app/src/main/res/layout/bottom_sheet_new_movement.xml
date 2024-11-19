@@ -8,17 +8,17 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nuevo movimiento"
+        android:layout_height="29dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/txt_title_form_movement"
         android:textAllCaps="true"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Planes"
+        android:text="@string/txt_plan"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"/>
 
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:background="@drawable/rounded_spinner"
-        android:hint="Seleccione una opcion"
         android:layout_marginBottom="16dp"/>
 
     <LinearLayout
@@ -47,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monto"
+                android:text="@string/txt_amount"
                 android:textSize="14sp"
                 android:layout_marginBottom="8dp"/>
 
@@ -57,11 +56,13 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:inputType="numberDecimal"
-                android:hint="$100.00"
+                android:hint="@string/txt_placeholder_amount"
                 android:paddingStart="6dp"
                 android:paddingEnd="0dp"
                 android:background="@drawable/rounded_edittext"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:textColor="?attr/input_text_color"
+                android:textColorHint="?attr/input_hint_text_color"/>
         </LinearLayout>
 
         <!--Type Movement-->
@@ -81,8 +82,8 @@
                 android:id="@+id/txt_typeMovement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ingreso"
                 android:textSize="14sp"
+                android:text="Ingreso"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -90,6 +91,7 @@
         android:id="@+id/btnSaveMovement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar" />
-
+        android:text="@string/txt_btn_save"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:textSize="16sp"/>
 </LinearLayout>

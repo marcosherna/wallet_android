@@ -18,7 +18,7 @@
         <!-- Expense color. -->
         <item name="dangerColor">@color/expense_color_dark</item>
         <item name="contact_color">@color/contact_color_dark</item>
-        <item name="contrast_color_img">@color/white</item>
+        <item name="contrast_color_img">@color/hint_color</item>
 
         <item name="input_text_color">@color/black</item>
         <item name="input_hint_text_color">@color/hint_color</item>

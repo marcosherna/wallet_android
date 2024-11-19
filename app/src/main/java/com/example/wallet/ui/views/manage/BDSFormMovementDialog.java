@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
+import com.example.wallet.R;
 import com.example.wallet.databinding.BottomSheetNewMovementBinding;
 import com.example.wallet.ui.models.AccountMovementUI;
 import com.example.wallet.ui.models.PlanUI;
@@ -75,9 +74,10 @@ public class BDSFormMovementDialog extends BottomSheetDialogFragment {
 
         List<String> plansNames = this.plans.stream()
                 .map(PlanUI::getName).collect(Collectors.toList());
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(),
-                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+                R.layout.spinner_item,
                 plansNames);
 
         adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);

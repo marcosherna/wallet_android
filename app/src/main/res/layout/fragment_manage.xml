@@ -36,11 +36,18 @@
             <Button
                 android:id="@+id/btnNewMovement"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:minHeight="48dp"
                 android:layout_marginStart="8dp"
+                android:paddingHorizontal="16dp"
                 android:drawableEnd="@drawable/ic_more_plans_24"
-                android:drawableTint="@color/white"
-                android:text="@string/txt_new_button" />
+                android:drawableTint="?attr/colorOnPrimary"
+                android:text="@string/txt_new_button"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:backgroundTint="?attr/colorPrimary"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="16sp"/>
+
         </LinearLayout>
 
         <!-- Segundo LinearLayout con TextViews -->
