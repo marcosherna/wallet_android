@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wallet</string>
+    <string name="app_name">MONEDERO</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -18,7 +18,7 @@
     <string name="txt_new_button">Nuevo</string>
     <string name="txt_type">Tipo</string>
 
-    <string name="txt_loading">Cargando...</string>
+    <string name="txt_loading">Cargando…</string>
     <string name="txt_btn_logOut">Cerrar sesion</string>
     <string name="txt_menu_settings">Configuración</string>
 
