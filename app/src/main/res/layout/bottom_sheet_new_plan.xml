@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,7 +9,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NUEVO PLAN"
+        android:text="@string/txt_title_form_plan"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -20,7 +19,7 @@
         android:id="@+id/tvNamePlan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre"
+        android:text="@string/txt_name"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"/>
 
@@ -28,13 +27,16 @@
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"
+        android:autofillHints=""
+        android:hint="@string/txt_placeholder_name_plan"
         android:padding="8dp"
         android:layout_marginBottom="16dp"
         android:minHeight="48dp"
         android:paddingStart="6dp"
         android:paddingEnd="0dp"
-        android:background="@drawable/rounded_edittext"/>
+        android:background="@drawable/rounded_edittext"
+        android:textColor="?attr/input_text_color"
+        android:textColorHint="?attr/input_hint_text_color"/>
 
 
     <LinearLayout
@@ -48,14 +50,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Monto"
+            android:text="@string/txt_amount"
             android:textSize="14sp"/>
         <TextView
             android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Plazo"
+            android:text="@string/txt_term"
             android:textSize="14sp"/>
     </LinearLayout>
 
@@ -69,22 +71,26 @@
             android:id="@+id/edtAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="numberDecimal"
-            android:hint="00.0"
+            android:hint="@string/txt_placeholder_amount"
             android:layout_weight="1"
             android:minHeight="48dp"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
             android:layout_marginBottom="12dp"
-            android:paddingStart="6dp"
-            android:background="@drawable/rounded_edittext"/>
+            android:paddingHorizontal="6dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="?attr/input_text_color"
+            android:textColorHint="?attr/input_hint_text_color"/>
 
         <EditText
             android:id="@+id/edtTerm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="3 Meses"
+            android:autofillHints=""
+            android:hint="@string/txt_placeholder_term"
             android:minHeight="48dp"
             android:padding="8dp"
             android:focusable="false"
@@ -92,13 +98,15 @@
             android:layout_marginBottom="12dp"
             android:paddingStart="6dp"
             android:paddingEnd="0dp"
-            android:background="@drawable/rounded_edittext"/>
+            android:background="@drawable/rounded_edittext"
+            android:textColor="?attr/input_text_color"
+            android:textColorHint="?attr/input_hint_text_color"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Concepto"
+        android:text="@string/txt_concept"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"/>
 
@@ -106,19 +114,25 @@
         android:id="@+id/edtDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Concepto / Descriptcion"
+        android:autofillHints=""
+        android:hint="@string/txt_placeholder_concept"
+        android:inputType="text"
         android:minHeight="48dp"
         android:layout_marginEnd="8dp"
         android:padding="8dp"
         android:layout_marginBottom="12dp"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:background="@drawable/rounded_edittext"/>
+        android:background="@drawable/rounded_edittext"
+        android:textColor="?attr/input_text_color"
+        android:textColorHint="?attr/input_hint_text_color"/>
 
     <Button
         android:id="@+id/btnSaveNewPlan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"/>
+        android:text="@string/txt_btn_save"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:textSize="16sp"/>
 
 </LinearLayout>

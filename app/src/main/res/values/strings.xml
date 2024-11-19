@@ -24,6 +24,7 @@
 
     <!--FORMS -->
     <string name="txt_names">Nombres</string>
+
     <string name="txt_placeholder_names">Digite sus nombres</string>
     <string name="txt_lastNames">Apellidos</string>
     <string name="txt_placeholder_lastNames">Digite sus apellidos</string>
@@ -47,6 +48,7 @@
     <string name="txt_login">Inicio de sesion</string>
     <string name="txt_register">Registrarse</string>
     <string name="txt_title_form_movement">Nuevo Movimiento</string>
+    <string name="txt_title_form_plan">Nuevo Plan</string>
 
     <string name="txt_logo_description">logo session</string>
 
@@ -64,6 +66,15 @@
     <string name="txt_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="txt_do_not_have_account">¿No posees una cuenta?</string>
     <string name="txt_have_account">Ya poseo una cuenta</string>
+
+    <string name="txt_name">Nombre</string>
+    <string name="txt_placeholder_name_plan">Digite un nombre</string>
+
+    <string name="txt_term">Plazo</string>
+    <string name="txt_placeholder_term">12/02/2025</string>
+
+    <string name="txt_concept">Concepto/Descripcion</string>
+    <string name="txt_placeholder_concept">Digite un concepto o descripcion</string>
 
 
 </resources>
