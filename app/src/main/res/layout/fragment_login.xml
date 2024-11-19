@@ -10,15 +10,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"
-        android:contentDescription="logotipo"
+        android:src="@drawable/logo_icon"
+        android:contentDescription="@string/txt_logo_description"
         android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INICIO DE SESSION"
+        android:text="@string/txt_login"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/txt_email"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"  />
 
@@ -38,19 +38,21 @@
         android:layout_height="wrap_content"
         android:autofillHints="emailAddress"
         android:background="@drawable/rounded_edittext"
-        android:hint="example_user@gmail.com"
+        android:hint="@string/txt_email_placeholder"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingHorizontal="6dp"
         android:ems="10"
         android:layout_marginBottom="16dp"
+        android:textColor="?attr/input_text_color"
+        android:textColorHint="?attr/input_hint_text_color"
         tools:ignore="TextFields" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contraseña"
+        android:text="@string/txt_password"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"  />
 
@@ -60,9 +62,11 @@
         android:layout_height="wrap_content"
         android:autofillHints="password"
         android:background="@drawable/rounded_edittext"
-        android:hint="Contraseña"
+        android:hint="@string/txt_password"
         android:minHeight="48dp"
         android:ems="10"
+        android:textColor="?attr/input_text_color"
+        android:textColorHint="?attr/input_hint_text_color"
         android:inputType="textPassword"
         android:paddingHorizontal="6dp"
         android:layout_marginBottom="24dp"/>
@@ -71,20 +75,24 @@
         android:id="@+id/txl_password_forgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Olvidaste tu contraseña?"
+        android:text="@string/txt_forgot_password"
         android:layout_marginBottom="8dp"/>
 
     <Button
         android:id="@+id/btn_session"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Continuar" />
+        style="@style/Widget.Material3.Button.TextButton"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="16sp"
+        android:text="@string/txt_btn_login" />
 
     <TextView
         android:id="@+id/txl_create_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No posees una cuenta?"
+        android:text="@string/txt_do_not_have_account"
         android:layout_marginTop="8dp"/>
 
 </LinearLayout>

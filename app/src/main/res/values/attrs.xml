@@ -3,4 +3,7 @@
     <attr name="dangerColor" format="color" />
     <attr name="contact_color" format="color" />
     <attr name="contrast_color_img" format="color" />
+
+    <attr name="input_text_color" format="color" />
+    <attr name="input_hint_text_color" format="color" />
 </resources>

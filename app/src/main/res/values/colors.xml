@@ -17,4 +17,11 @@
     <color name="contact_color_light">#2196F3</color>
     <color name="contact_color_dark">#65ABE3</color>
     <color name="input_color_dark">#D9DBFF</color>
+
+
+    <color name="primary_color">#7881F9</color>
+    <color name="primary_variant_color">#525CE6</color>
+
+    <color name="hint_color">#8F8E8E</color>
+
 </resources>

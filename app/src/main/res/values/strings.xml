@@ -31,11 +31,15 @@
     <string name="txt_btn_save">Guardar</string>
     <string name="txt_btn_cancel">Cancelar</string>
     <string name="txt_btn_send">Enviar</string>
+    <string name="txt_btn_login">Continuar</string>
 
     <string name="txt_btn_contact">Contáctanos</string>
     <string name="txt_contact_description">Si, tienes problemas, dudas o comentarios</string>
 
     <string name="txt_profile">Perfil</string>
+    <string name="txt_login">Inicio de sesion</string>
+
+    <string name="txt_logo_description">logo session</string>
 
     <!--FORMS CONTACT ME-->
     <string name="txt_who_contact">¿Quien redacta?</string>
@@ -47,6 +51,9 @@
     <string name="txt_placeholder_who_contact">Yo</string>
     <string name="txt_placeholder_which_contact">Motivo</string>
     <string name="txt_placeholder_detail_contact">Detalle su comentario, duda o problema</string>
+
+    <string name="txt_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="txt_do_not_have_account">¿No posees una cuenta?</string>
 
 
 </resources>

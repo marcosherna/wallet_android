@@ -2,8 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.Wallet" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+<!--        <item name="colorPrimary">@color/purple_200</item>
+            <item name="colorPrimaryVariant">@color/purple_700</item>
+-->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_variant_color</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,5 +19,8 @@
         <item name="dangerColor">@color/expense_color_dark</item>
         <item name="contact_color">@color/contact_color_dark</item>
         <item name="contrast_color_img">@color/white</item>
+
+        <item name="input_text_color">@color/black</item>
+        <item name="input_hint_text_color">@color/hint_color</item>
     </style>
 </resources>
