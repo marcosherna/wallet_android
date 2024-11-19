@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         LocalContext.setup();
 
-        RxJavaPlugins.setErrorHandler(e -> {
-            Log.e("RxJavaError", "Unhandled exception", e);
-        });
+        RxJavaPlugins.setErrorHandler(e -> Log.e("RxJavaError", "Unhandled exception", e));
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
