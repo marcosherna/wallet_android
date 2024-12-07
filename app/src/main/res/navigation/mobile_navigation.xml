@@ -6,20 +6,58 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.wallet.ui.views.login.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+
+        <action android:id="@+id/navigation_to_register"
+            app:destination="@+id/navigation_register"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="com.example.wallet.ui.views.register.RegisterFragment"
+        tools:layout="@layout/fragment_register" />
+
+    <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.wallet.ui.home.HomeFragment"
+        android:name="com.example.wallet.ui.views.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.wallet.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_manage"
+        android:name="com.example.wallet.ui.views.manage.ManageFragment"
+        android:label="@string/txt_manage"
+        tools:layout="@layout/fragment_manage" >
+
+<!--        <action android:id="@+id/navigation_manage_to_navigation_add_account"-->
+<!--            app:destination="@+id/navigation_add_account_movement" />-->
+
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.wallet.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_plan"
+        android:name="com.example.wallet.ui.views.plan.PlanFragment"
+        android:label="@string/txt_plan"
+        tools:layout="@layout/fragment_plan" />
+
+    <fragment
+        android:id="@+id/navigation_tip"
+        android:name="com.example.wallet.ui.views.tips.TipsFragment"
+        android:label="@string/txt_tip"
+        tools:layout="@layout/fragment_tips" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.wallet.ui.views.profile.ProfileFragment"
+        android:label="@string/txt_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_contact_me"
+        android:name="com.example.wallet.ui.views.contactMe.ContactMeFragment"
+        android:label="@string/txt_btn_contact"
+        tools:layout="@layout/fragment_contact_me" />
 </navigation>

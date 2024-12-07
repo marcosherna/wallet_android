@@ -2,8 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.Wallet" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+<!--        <item name="colorPrimary">@color/purple_500</item>
+            <item name="colorPrimaryVariant">@color/purple_700</item>
+-->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_variant_color</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,6 +14,14 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <!-- Expense color. -->
+        <item name="dangerColor">@color/expense_color_light</item>
+        <item name="contact_color">@color/contact_color_light</item>
+        <item name="contrast_color_img">#2E2C2C</item>
+
+        <item name="input_text_color">@color/black</item>
+        <item name="input_hint_text_color">@color/hint_color</item>
     </style>
+
 </resources>

@@ -1,6 +1,84 @@
 <resources>
-    <string name="app_name">wallet</string>
+    <string name="app_name">MONEDERO</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="txt_all">Todos</string>
+    <string name="txt_expense">Egresos</string>
+    <string name="txt_revenue">Ingresos</string>
+    <string name="txt_tip">Consejos</string>
+    <string name="txt_manage">Gestion</string>
+    <string name="txt_plan">Planes</string>
+
+    <string name="txt_amount">Monto</string>
+    <string name="txt_placeholder_amount">00.00</string>
+    <string name="txt_date_entry">Fecha</string>
+    <string name="txt_plan_id">Id Plan</string>
+    <string name="txt_new_button">Nuevo</string>
+    <string name="txt_type">Tipo</string>
+
+    <string name="txt_loading">Cargando…</string>
+    <string name="txt_btn_logOut">Cerrar sesion</string>
+    <string name="txt_menu_settings">Configuración</string>
+
+    <!--FORMS -->
+    <string name="txt_names">Nombres</string>
+
+    <string name="txt_placeholder_names">Digite sus nombres</string>
+    <string name="txt_lastNames">Apellidos</string>
+    <string name="txt_placeholder_lastNames">Digite sus apellidos</string>
+    <string name="txt_email">Correo</string>
+    <string name="txt_email_placeholder">example_user@gmail.com</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="txt_placeholder_password">Digita tu contraseña</string>
+    <string name="txt_confirmPassword">Confirmar Contraseña</string>
+    637672106291-n17eeqdaogluu9bau7b9i2qbhqpsafkh.apps.googleusercontent.com
+
+
+    <string name="default_web_client_id">637672106291-n17eeqdaogluu9bau7b9i2qbhqpsafkh.apps.googleusercontent.com</string>
+
+    <string name="txt_btn_save">Guardar</string>
+    <string name="txt_login_google">Sign in</string>
+    <string name="txt_btn_cancel">Cancelar</string>
+    <string name="txt_btn_send">Enviar</string>
+    <string name="txt_btn_login">Continuar</string>
+    <string name="txt_btn_register">Registrar</string>
+
+    <string name="txt_btn_contact">Contáctanos</string>
+    <string name="txt_contact_description">Si, tienes problemas, dudas o comentarios</string>
+
+    <string name="txt_profile">Perfil</string>
+    <string name="txt_login">Inicio de sesion</string>
+    <string name="txt_register">Registrarse</string>
+    <string name="txt_title_form_movement">Nuevo Movimiento</string>
+    <string name="txt_title_form_plan">Nuevo Plan</string>
+
+    <string name="txt_logo_description">logo session</string>
+
+    <!--FORMS CONTACT ME-->
+    <string name="txt_who_contact">¿Quien redacta?</string>
+    <string name="txt_which_contact">¿Cual es el motivo?</string>
+    <string name="txt_detail_contact">Brinde detalles</string>
+    <string name="txt_info_description_contact">Comprobante (si aplica por un problema)</string>
+    <string name="txt_btn_select_file">Elegir archivo</string>
+    <!-- placeholder-->
+    <string name="txt_placeholder_who_contact">Yo</string>
+    <string name="txt_placeholder_which_contact">Motivo</string>
+    <string name="txt_placeholder_detail_contact">Detalle su comentario, duda o problema</string>
+
+    <string name="txt_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="txt_do_not_have_account">¿No posees una cuenta?</string>
+    <string name="txt_have_account">Ya poseo una cuenta</string>
+
+    <string name="txt_name">Nombre</string>
+    <string name="txt_placeholder_name_plan">Digite un nombre</string>
+
+    <string name="txt_term">Plazo</string>
+    <string name="txt_placeholder_term">12/02/2025</string>
+
+    <string name="txt_concept">Concepto/Descripcion</string>
+    <string name="txt_placeholder_concept">Digite un concepto o descripcion</string>
+
+
 </resources>
