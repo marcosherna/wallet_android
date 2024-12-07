@@ -76,5 +76,13 @@
     <string name="txt_concept">Concepto/Descripcion</string>
     <string name="txt_placeholder_concept">Digite un concepto o descripcion</string>
 
+    <string name="txt_direction_label">Dirección</string>
+    <string name="txt_direction_university">P7JJ+55C, Calle Ing. Jesús Adalberto Díaz Pineday, Avenida Central Final, Sonsonate</string>
 
+    <string name="txt_phone_number_label">Numero de telefono</string>
+    <string name="txt_phone_number_description">Atencion al cliente:</string>
+    <string name="txt_phone_number"> +503 70636535</string>
+
+    <string name="txt_email_label">Correo electronico</string>
+    <string name="txt_email_contact">zavaletafernnadez@gmail.com</string>
 </resources>
